@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20120926183532) do
 
   create_table "parts", :force => true do |t|
     t.string   "name"
+    t.string   "place"
     t.text     "comment"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
