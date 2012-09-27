@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @costume.name %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @costume.price %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @costume.type %>
+</p>
+
+<p>
+  <b>Availability:</b>
+  <%= @costume.availability %>
+</p>
+
+
+<%= link_to 'Edit', edit_costume_path(@costume) %> |
+<%= link_to 'Back', costumes_path %>

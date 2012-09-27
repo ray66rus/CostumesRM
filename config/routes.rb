@@ -1,4 +1,16 @@
 CostumesRM::Application.routes.draw do
+  resources :orders
+
+  resources :clients
+
+  resources :costumes
+
+  resources :images
+
+  resources :parts
+
+  resources :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
