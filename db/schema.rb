@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 20120926183532) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "clients", ["name"], :name => "index_clients_on_name", :unique => true
+
   create_table "costumes", :force => true do |t|
     t.string   "name"
     t.integer  "price"

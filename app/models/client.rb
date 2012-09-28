@@ -16,4 +16,11 @@
 class Client < ActiveRecord::Base
   attr_accessible :address, :comment, :contact, :email, :name, :phone
   has_many :orders
+  
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  VALID_PHONE_REGEXP = /\A\+?\d?[ \d\-\(\)]+\z/
+  validates :phone,
+        presence: true, format: { with: VALID_PHONE_REGEXP }, length: { minimum: 7 }
+  VALID_EMAIL_REGEXP = /\A[\w+\-\.]+@[a-z\d\-\.]+\.[a-z]+\z/i
+  validates :email, format: { with: VALID_EMAIL_REGEXP }
 end
