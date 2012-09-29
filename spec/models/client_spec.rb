@@ -46,6 +46,7 @@ describe "Client" do
   describe "when email is valid" do
     it "should be valid" do
      address = %w[user@foo.COM A_US-ER@f.b.org frst.lst@fpp.jp a+b@bar.cn]
+     address.push('');
      address.each do |valid_email|
         @client.email = valid_email
         @client.should be_valid

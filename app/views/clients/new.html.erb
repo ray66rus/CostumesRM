@@ -1,6 +1,6 @@
 <% provide(:title, 'Новый клиент') %>
 <h1>Добавление клиента</h1>
-<%= form_for(@client) do |f| %>
+<%= form_for @client, :url => client_create_path(@client) do |f| %>
   <% if @client.errors.any? %>
     <div id="error_explanation">
       <h2>Невозможно добавить клиента: <%= pluralize(@client.errors.count, "error") %></h2>
@@ -20,12 +20,12 @@
   
   <div class="field">
     <%= f.label 'Телефон' %><br />
-    <%= f.text_field :phone %>
+    <%= f.phone_field :phone %>
   </div>
 
   <div class="field">
     <%= f.label 'E-mail' %><br />
-    <%= f.text_field :email %>
+    <%= f.email_field :email %>
   </div>
 
   <div class="field">
@@ -40,7 +40,7 @@
   
   <div class="field">
     <%= f.label 'Комментарий' %><br />
-    <%= f.text_field :comment %>
+    <%= f.text_area :comment, :rows => 3 %>
   </div>
   
   <div class="actions">

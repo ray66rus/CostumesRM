@@ -1,0 +1,37 @@
+<% provide(:title, 'Клиенты') %>
+<h1>Список клиентов</h1>
+<div class='clients-container'>
+  <div class='table-row header'>
+    <div class='table-cell name'><h3>Название клиента</h3></div>
+    <div class='table-cell contacts'><h3>Контактные данные</h3></div>
+    <div class='table-cell comment'><h3>Комментарий</h3></div>
+    <div class='table-cell orders'><h3>История заказов</h3></div>
+  </div>
+  
+  <% @clients.each do |client| %>
+    <% contacts = client.contact.empty? ? [] : [ client.contact ] %>
+    <% if !client.phone.empty? then contacts.push(client.phone) end %>
+    <% if !client.email.empty? then contacts.push(client.email) end %>
+    <% if !client.address.empty? then contacts.push(client.address) end %>
+    <div class='table-row'>
+      <div class='table-cell name'><%= client.name %></div>
+      <div class='table-cell contacts'>
+        <% contacts.each do |contact| %>
+          <%= contact %>
+          <%= raw "<br />" unless contact == contacts.last %>
+        <% end %>
+      </div>
+      <div class='table-cell comment'><%= client.comment.empty? ? "&nbsp;".html_safe : client.comment %></div>
+      <div class='table-cell orders'>
+        <% client.orders.each do |order| %>
+          <%= order.created_at %>
+          <%= raw "<br />" unless order == client.orders.last %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+  <div class='clear-both'></div>
+  
+  <%= link_to 'Добавить клиента', add_client_path %>
+</div>

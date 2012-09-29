@@ -9,8 +9,8 @@ describe "ClientPages" do
   describe "add client page" do
     before { visit add_client_path }
 
-    it { should have_selector('h1', text: 'Добавление клиента') }
     it { should have_selector('title', text: full_title('Новый клиент')) }
+    it { should have_selector('h1', text: 'Добавление клиента') }
     it { should have_selector('label', text: 'Название') }
     it { should have_selector('label', text: 'Телефон') }
     it { should have_selector('label', text: 'E-mail') }
@@ -18,5 +18,18 @@ describe "ClientPages" do
     it { should have_selector('label', text: 'Контактное лицо') }
     it { should have_selector('label', text: 'Комментарий') }
     
+  end
+  
+  describe "list clients page" do
+    before { visit list_clients_path }
+    
+    it { should have_selector('title', text: full_title('Клиенты')) }
+    it { should have_selector('h1', text: 'Список клиентов') }
+    it { should have_selector('div', text: 'Название клиента') }
+    it { should have_selector('div', text: 'Контактные данные') }
+    it { should have_selector('div', text: 'Комментарий') }
+    it { should have_selector('div', text: 'История заказов') }
+    it { should have_selector('a', text: 'Добавить клиента') }
+
   end
 end

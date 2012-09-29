@@ -21,6 +21,6 @@ class Client < ActiveRecord::Base
   VALID_PHONE_REGEXP = /\A\+?\d?[ \d\-\(\)]+\z/
   validates :phone,
         presence: true, format: { with: VALID_PHONE_REGEXP }, length: { minimum: 7 }
-  VALID_EMAIL_REGEXP = /\A[\w+\-\.]+@[a-z\d\-\.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEXP = /\A([\w+\-\.]+@[a-z\d\-\.]+\.[a-z]+)?\z/i
   validates :email, format: { with: VALID_EMAIL_REGEXP }
 end
