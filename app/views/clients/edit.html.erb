@@ -1,0 +1,4 @@
+<% provide(:title, 'Изменение клиента') %>
+<h1>Изменение данных клиента</h1>
+
+<%= render :partial => 'form', :locals => { :link => update_client_path(@client) } %>

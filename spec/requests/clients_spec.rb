@@ -16,8 +16,7 @@ describe "ClientPages" do
     it { should have_selector('label', text: 'E-mail') }
     it { should have_selector('label', text: 'Адрес') }
     it { should have_selector('label', text: 'Контактное лицо') }
-    it { should have_selector('label', text: 'Комментарий') }
-    
+    it { should have_selector('label', text: 'Комментарий') }    
   end
   
   describe "list clients page" do
@@ -29,7 +28,22 @@ describe "ClientPages" do
     it { should have_selector('div', text: 'Контактные данные') }
     it { should have_selector('div', text: 'Комментарий') }
     it { should have_selector('div', text: 'История заказов') }
+    it { should have_selector('div', text: 'Операции') }
     it { should have_selector('a', text: 'Добавить клиента') }
-
   end
+
+  describe "edit client page" do
+    let(:client) { FactoryGirl.create(:client) }
+    before { visit edit_client_path(client) }
+    
+    it { should have_selector('title', text: full_title('Изменение клиента')) }
+    it { should have_selector('h1', text: 'Изменение данных клиента') }
+    it { should have_selector('label', text: 'Название') }
+    it { should have_selector('label', text: 'Телефон') }
+    it { should have_selector('label', text: 'E-mail') }
+    it { should have_selector('label', text: 'Адрес') }
+    it { should have_selector('label', text: 'Контактное лицо') }
+    it { should have_selector('label', text: 'Комментарий') }
+  end
+
 end
