@@ -14,13 +14,13 @@ class Part < ActiveRecord::Base
   attr_accessible :comment, :name, :place
   
   has_and_belongs_to_many :costumes
-  has_many :images, :as => :imageable
+  has_many :pictures, :as => :pictureable
   
   validates :name, presence: true
   
   after_save :create_associated_costume
-  before_destroy :check_costumes_count
-  after_destroy :delete_associated_costume
+  before_destroy :delete_associated_costume
+  after_destroy :delete_associated_pictures
   
   def create_associated_costume
     if self.costumes.length == 0
@@ -30,24 +30,24 @@ class Part < ActiveRecord::Base
     attached_costume.name = self.name
   end
   
-  def check_costumes_count
+  def delete_associated_costume
     if self.costumes.length > 1
       return false
     end
     
-    if self.costumes.length != 1
+    if self.costumes.length == 0
       return true
     end
     
     attached_costume = Costume.find(self.costumes.first)
     if !attached_costume.nil?
-      attached_costume.destroy
+      return attached_costume.destroy ? true : false
     end
   end
   
-  def delete_associated_costume    
-    if(self.costumes.length > 0)
-      return false
+  def delete_associated_pictures
+    self.pictures.each do |picture|
+      picture.destroy
     end
   end
 end

@@ -10,24 +10,28 @@
         position: relative;
         
         &.operations {
-            width: 200px;
+            width: 150px;
         }
         &.name {
-            width: 200px;
+            width: 150px;
         }
         &.comment {
-            width: 100%;
-            padding-left: 805px;
-            margin-left: -800px;
-            position: static;
+            width: 150px;
+            padding-left: 5px;
         }
         &.place {
-            width: 200px;
+            width: 150px;
             padding-left: 5px;
         }
         &.price {
             padding-left: 5px;
-            width: 200px;
+            width: 150px;
+        }
+        &.picture {
+            width: 100%;
+            padding-left: 750px;
+            margin-left: -750px;
+            position: static;
         }
     }
     

@@ -15,6 +15,7 @@ describe "PartsPages" do
     it { should have_selector('label', text: 'Место') }
     it { should have_selector('label', text: 'Цена') }
     it { should have_selector('label', text: 'Комментарий') }
+    it { should have_selector('label', text: 'Изображения') }
   end
   
   describe "list parts page" do
@@ -26,6 +27,7 @@ describe "PartsPages" do
     it { should have_selector('div', text: 'Цена') }
     it { should have_selector('div', text: 'Место') }
     it { should have_selector('div', text: 'Комментарий') }
+    it { should have_selector('div', text: 'Изображения') }
     it { should have_selector('a', text: 'Добавить часть костюма') }
   end
   
@@ -39,6 +41,7 @@ describe "PartsPages" do
     it { should have_selector('div', text: 'Цена') }
     it { should have_selector('div', text: 'Место') }
     it { should have_selector('div', text: 'Комментарий') }
+    it { should have_selector('label', text: 'Изображения') }
   end
   
 end

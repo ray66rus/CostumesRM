@@ -1,4 +1,4 @@
-<%= form_for @part, :url => link do |f| %>
+<%= form_for @part, :url => link, :html => { :multipart => true } do |f| %>
   <% if @part.errors.any? %>
     <div id="error_explanation">
       <h2>Невозможно добавить часть костюма: <%= pluralize(@part.errors.count, "error") %></h2>
@@ -31,6 +31,17 @@
     <%= f.text_area :comment, :rows => 3 %>
   </div>
   
+  <div class="field">
+    <%= f.label 'Изображения' %><br />
+    <% @part.pictures.each_with_index do |picture, i| %>
+      <%= image_tag picture.image.url %>
+      remove it:
+      <%= check_box_tag name='pictures[picture-' + i.to_s + ']' %>
+      <br>
+    <% end %>
+    <%= file_field_tag 'pictures[new_picture]' %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

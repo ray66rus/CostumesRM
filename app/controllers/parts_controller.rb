@@ -6,16 +6,25 @@ class PartsController < ApplicationController
   end
   
   def create
-    @part = Part.new(params[:part])
+    @part = Part.new(params[:part]);
     
     respond_to do |format|
       if @part.save
+        _add_picture(@part, params[:pictures][:new_picture])
         _set_price_for_attached_costume(@part, params[:price])
         format.html { redirect_to action: "index", notice: 'Часть костюма создана' }
       else
         format.html { render action: "new" }
       end
     end
+  end
+  
+  def _add_picture(part, picture)
+    if picture.nil?
+      return
+    end
+    part.pictures.create({ :image => picture });
+    part.save
   end
   
   def _set_price_for_attached_costume(part, price)
@@ -46,13 +55,23 @@ class PartsController < ApplicationController
 
   def update
     @part = Part.find(params[:id])
-    
+
     respond_to do |format|
       if @part.update_attributes(params[:part])
+        _remove_pictures(@part, params[:pictures])
+        _add_picture(@part, params[:pictures][:new_picture])
         _set_price_for_attached_costume(@part, params[:price])
         format.html { redirect_to action: "index", notice: 'Данные о части костюма обновлены' }
       else
         format.html { render action: "edit" }
+      end
+    end
+  end
+  
+  def _remove_pictures(part, removed_pictures)
+    part.pictures.each_with_index do |picture, i|
+      if removed_pictures['picture-' + i.to_s]
+        picture.destroy
       end
     end
   end
