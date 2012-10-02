@@ -1,7 +1,0 @@
-<% provide(:title, 'Загрузка изображения') %>
-<h1><%= yield(:title) %></h1>
-<%= form_tag('/images/uploadFile', :multipart => true) do %>
-  <p><label for="upload_file">Select File</label> :
-  <%= file_field_tag 'picture' %></p>
-  <%= submit_tag "Upload" %>
-<% end %>
