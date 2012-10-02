@@ -35,6 +35,11 @@ ActiveRecord::Schema.define(:version => 20120926183532) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "costumes_orders", :id => false, :force => true do |t|
+    t.integer "costume_id"
+    t.integer "order_id"
+  end
+
   create_table "costumes_parts", :id => false, :force => true do |t|
     t.integer "costume_id"
     t.integer "part_id"
