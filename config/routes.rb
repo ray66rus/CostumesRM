@@ -10,5 +10,12 @@ CostumesRM::Application.routes.draw do
   post 'clients' => 'clients#create', :as => :create_client
   get 'clients/:id/edit' => 'clients#edit', :as => :edit_client
   put 'clients/:id' => 'clients#update', :as => :update_client
+  
+  get 'parts/new' => 'parts#new', :as => :add_part
+  post 'parts' => 'parts#create', :as => :create_part
+  get 'parts' => 'parts#index', :as => :list_parts
+  get 'parts/:id/edit' => 'parts#edit', :as => :edit_part
+  put 'parts/:id' => 'parts#update', :as => :update_part
+  delete 'parts/:id' => 'parts#delete', :as => :delete_part
 
 end

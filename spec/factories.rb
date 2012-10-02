@@ -9,4 +9,10 @@ FactoryGirl.define do
     contact	"Вассисуалий Лоханкин"
     comment	"раз два три четыре пять\nвышел вася погулять"
   end
+  
+  factory :part do
+    name	"Белая рубашка"
+    place	"Полка А2"
+    comment	"раз два три четыре пять\nвышел вася погулять"
+  end
 end

@@ -1,7 +1,7 @@
-<%= form_for(@part) do |f| %>
+<%= form_for @part, :url => link do |f| %>
   <% if @part.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@part.errors.count, "error") %> prohibited this part from being saved:</h2>
+      <h2>Невозможно добавить часть костюма: <%= pluralize(@part.errors.count, "error") %></h2>
 
       <ul>
       <% @part.errors.full_messages.each do |msg| %>
@@ -12,13 +12,25 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label 'Название' %><br />
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_field :comment %>
+  
+  <div class="place">
+    <%= f.label 'Место' %><br />
+    <%= f.text_field :place %>
   </div>
+
+  <div class="price">
+    <%= f.label 'Цена' %><br />
+    <%= number_field_tag 'price', @part.costumes.length > 0 ? @part.costumes.first.price : 0 %>
+  </div>
+  
+  <div class="field">
+    <%= f.label 'Комментарий' %><br />
+    <%= f.text_area :comment, :rows => 3 %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

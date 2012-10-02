@@ -23,7 +23,11 @@ class Part < ActiveRecord::Base
   after_destroy :delete_associated_costume
   
   def create_associated_costume
-    self.costumes << Costume.create(:name => self.name)
+    if self.costumes.length == 0
+      self.costumes.create(:name => self.name)
+    end
+    attached_costume = self.costumes.first;
+    attached_costume.name = self.name
   end
   
   def check_costumes_count
@@ -31,11 +35,14 @@ class Part < ActiveRecord::Base
       return false
     end
     
+    if self.costumes.length != 1
+      return true
+    end
+    
     attached_costume = Costume.find(self.costumes.first)
     if !attached_costume.nil?
       attached_costume.destroy
     end
-
   end
   
   def delete_associated_costume    

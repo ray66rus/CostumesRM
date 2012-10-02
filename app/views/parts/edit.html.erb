@@ -1,6 +1,4 @@
-<h1>Editing part</h1>
+<% provide(:title, 'Изменение части костюма') %>
+<h1>Изменение информации о части костюма</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @part %> |
-<%= link_to 'Back', parts_path %>
+<%= render :partial => 'form', :locals => { :link => update_part_path(@part) } %>
