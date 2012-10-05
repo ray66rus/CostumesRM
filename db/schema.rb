@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20121002191743) do
     t.integer  "price"
     t.string   "type"
     t.string   "availability"
+    t.text     "comment"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -43,15 +44,6 @@ ActiveRecord::Schema.define(:version => 20121002191743) do
   create_table "costumes_parts", :id => false, :force => true do |t|
     t.integer "costume_id"
     t.integer "part_id"
-  end
-
-  create_table "images", :force => true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.integer  "imageable_id"
-    t.string   "imageable_type"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
   end
 
   create_table "orders", :force => true do |t|

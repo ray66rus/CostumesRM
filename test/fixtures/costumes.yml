@@ -7,6 +7,7 @@
 #  price        :integer
 #  type         :string(255)
 #  availability :string(255)
+#  comment      :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
