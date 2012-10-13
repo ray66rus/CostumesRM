@@ -14,7 +14,7 @@
 #
 
 class Costume < ActiveRecord::Base
-  attr_accessible :availability, :name, :price, :type, :comment
+  attr_accessible :availability, :name, :price, :costume_type, :comment
   has_and_belongs_to_many :parts
   has_and_belongs_to_many :orders
   has_many :pictures, :as => :pictureable
@@ -23,7 +23,7 @@ class Costume < ActiveRecord::Base
   AVAILABILITY_TO_AVAILABILITY_NAME = { :y => 'Доступен', :n => 'Недоступен' }
   
   validates :name, presence: true
-  validates :type, format: { with: /^\Acomplex|simple\z/ }
+  validates :costume_type, format: { with: /^\Acomplex|simple\z/ }
   validates :availability, format: { with: /\Ay|n\z/ }
   
   after_initialize :init
@@ -31,7 +31,7 @@ class Costume < ActiveRecord::Base
   after_destroy :delete_associated_pictures
   
   def init
-    self.type ||= 'simple'
+    self.costume_type ||= 'simple'
     self.availability ||= 'y'
   end
   

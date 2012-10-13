@@ -3,7 +3,7 @@ class CreateCostumes < ActiveRecord::Migration
     create_table :costumes do |t|
       t.string :name
       t.integer :price
-      t.string :type
+      t.string :costume_type
       t.string :availability
       t.text :comment
      

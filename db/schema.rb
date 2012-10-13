@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20121002191743) do
   create_table "costumes", :force => true do |t|
     t.string   "name"
     t.integer  "price"
-    t.string   "type"
+    t.string   "costume_type"
     t.string   "availability"
     t.text     "comment"
     t.datetime "created_at",   :null => false
