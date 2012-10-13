@@ -1,16 +1,5 @@
 <%= form_for @client, :url => link do |f| %>
-  <% if @client.errors.any? %>
-    <div id="error_explanation">
-      <h2>Невозможно добавить клиента: <%= pluralize(@client.errors.count, "error") %></h2>
-
-      <ul>
-      <% @client.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <%= render :partial => 'common/errors', :locals => { :object => @client, :object_name => 'клиента' } %>
   <div class="field">
     <%= f.label 'Название' %><br />
     <%= f.text_field :name %>
