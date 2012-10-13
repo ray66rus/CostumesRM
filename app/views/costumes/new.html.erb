@@ -1,5 +1,4 @@
-<h1>New costume</h1>
+<% provide(:title, 'Новый костюм') %>
+<h1>Добавление костюма</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', costumes_path %>
+<%= render :partial => 'form', :locals => { :link => create_costume_path(@costume) } %>

@@ -1,5 +1,7 @@
 <%= form_for @part, :url => link, :html => { :multipart => true } do |f| %>
+
   <%= render :partial => 'common/errors', :locals => { :object => @part, :object_name => 'часть костюма' } %>
+
   <div class="field">
     <%= f.label 'Название' %><br />
     <%= f.text_field :name %>

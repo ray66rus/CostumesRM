@@ -1,3 +1,35 @@
 <%= form_for @costume, :url => link do |f| %>
+
   <%= render :partial => 'common/errors', :locals => { :object => @costume, :object_name => 'костюм' } %>
+
+  <div class="field">
+    <%= f.label 'Название' %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="price">
+    <%= f.label 'Цена' %><br />
+    <%= f.number_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Комментарий' %><br />
+    <%= f.text_area :comment, :rows => 3 %>
+  </div>
+  
+  <div class="field">
+    <%= f.label 'Изображения' %><br />
+    <% @costume.pictures.each_with_index do |picture, i| %>
+      <%= image_tag picture.image.url %>
+      remove it:
+      <%= check_box_tag name='pictures[picture-' + i.to_s + ']' %>
+      <br>
+    <% end %>
+    <%= file_field_tag 'pictures[new_picture]' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
 <% end %>

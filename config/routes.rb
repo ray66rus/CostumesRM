@@ -18,4 +18,10 @@ CostumesRM::Application.routes.draw do
   put 'parts/:id' => 'parts#update', :as => :update_part
   delete 'parts/:id' => 'parts#delete', :as => :delete_part
 
+  get 'costumes/new' => 'costumes#new', :as => :add_costume
+  post 'costumes' => 'costumes#create', :as => :create_costume
+  get 'costumes' => 'costumes#index', :as => :list_costumes
+  get 'costumes/:id/edit' => 'costumes#edit', :as => :edit_costume
+  put 'costumes/:id' => 'costumes#update', :as => :update_costume
+  delete 'costumes/:id' => 'costumes#delete', :as => :delete_costume
 end
