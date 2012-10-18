@@ -58,8 +58,10 @@ class PartsController < ApplicationController
 
     respond_to do |format|
       if @part.update_attributes(params[:part])
-        _remove_pictures(@part, params[:pictures])
-        _add_picture(@part, params[:pictures][:new_picture])
+        if !params[:pictures].nil?
+          _remove_pictures(@part, params[:pictures])
+          _add_picture(@part, params[:pictures][:new_picture])
+        end
         _set_price_for_attached_costume(@part, params[:price])
         format.html { redirect_to action: "index", notice: 'Данные о части костюма обновлены' }
       else

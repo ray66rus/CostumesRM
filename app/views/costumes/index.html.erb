@@ -1,0 +1,39 @@
+<% provide(:title, 'Костюмы') %>
+<h1>Список костюмов</h1>
+<div class='costumes-container'>
+  <div class='table-row header'>
+    <div class='table-cell operations'><h3>Операции</h3></div>
+    <div class='table-cell name'><h3>Название</h3></div>
+    <div class='table-cell comment'><h3>Комментарий</h3></div>
+    <div class='table-cell place'><h3>Доступность</h3></div>
+    <div class='table-cell price'><h3>Цена</h3></div>
+    <div class='table-cell pictures'><h3>Изображения</h3></div>
+  </div>
+  
+  <% @costumes.each do |costume| %>
+    <div class='table-row'>
+       <div class='table-cell operations'>
+        <% if costume.costume_type == 'complex' %>
+          <%= link_to 'Удалить', delete_costume_path(costume), method: :delete, data: { confirm: 'Вы уверены?' } %>
+          <%= link_to 'Редактировать', edit_costume_path(costume) %>
+        <% else %>
+          <%= "&nbsp;".html_safe %>
+        <% end %>
+      </div>
+      <div class='table-cell name'><%= costume.name %></div>
+      <div class='table-cell comment'><%= costume.comment.nil? || costume.comment.empty? ? "&nbsp;".html_safe : costume.comment %></div>
+      <div class='table-cell availability'><%= Costume::AVAILABILITY_TO_AVAILABILITY_NAME[costume.availability] %></div>
+      <div class='table-cell price'><%= costume.price.nil? ? "&nbsp;".html_safe : costume.price %></div>
+      <div class='table-cell picture'>
+        <% costume.pictures.each do |picture| %>
+          <%= image_tag picture.image.url, :width => '20' %>
+        <% end %>
+        &nbsp;
+      </div>
+    </div>
+  <% end %>
+  
+  <div class='clear-both'></div>
+  
+  <%= link_to 'Добавить костюм', add_costume_path %>
+</div>

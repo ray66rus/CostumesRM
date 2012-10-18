@@ -1,0 +1,4 @@
+<% provide(:title, 'Изменение костюма') %>
+<h1>Изменение информации о костюме</h1>
+
+<%= render :partial => 'form', :locals => { :link => update_costume_path(@costume) } %>

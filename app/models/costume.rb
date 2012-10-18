@@ -37,7 +37,7 @@ class Costume < ActiveRecord::Base
   
   def validate_associated_pictures
     self.pictures.each do |picture|
-      if !picture.validate
+      if !picture.valid?
         return false
       end
     end
