@@ -23,6 +23,18 @@
   </div>
 
   <div class="field">
+    <%= f.label 'Части' %><br />
+    <% @costume.parts.each do |part| %>
+      <%= part.name %>; remove it:
+      <%= check_box_tag name='parts[' + part.id.to_s + ']' %>
+      <br>
+    <% end %>
+    <% options_array = Part.all.select{|part| part.can_be_added_to_costume?}.map{|part| [part.name, part.id]} %>
+    <% options_array.unshift(['', '']) %>
+    <%= select_tag 'parts[new_part]', options_for_select(options_array) %>
+  </div>
+  
+  <div class="field">
     <%= f.label 'Изображения' %><br />
     <% @costume.pictures.each_with_index do |picture, i| %>
       <%= image_tag picture.image.url %>

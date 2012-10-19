@@ -19,8 +19,8 @@ class Costume < ActiveRecord::Base
   has_and_belongs_to_many :orders
   has_many :pictures, :as => :pictureable
   
-  TYPE_TO_TYPE_NAME = { :complex => 'Составной', :simple => 'Простой' }
-  AVAILABILITY_TO_AVAILABILITY_NAME = { :y => 'Доступен', :n => 'Недоступен' }
+  TYPE_TO_TYPE_NAME = { 'complex' => 'Составной', 'simple' => 'Простой' }
+  AVAILABILITY_TO_AVAILABILITY_NAME = { 'y' => 'Доступен', 'n' => 'Недоступен' }
   
   validates :name, presence: true
   validates :costume_type, format: { with: /^\Acomplex|simple\z/ }
@@ -30,6 +30,7 @@ class Costume < ActiveRecord::Base
   before_validation :validate_associated_pictures
   after_destroy :delete_associated_pictures
   
+  private
   def init
     self.costume_type ||= 'simple'
     self.availability ||= 'y'

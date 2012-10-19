@@ -28,6 +28,7 @@ describe "CostumesPages" do
     it { should have_selector('div', text: 'Доступность') }
     it { should have_selector('div', text: 'Комментарий') }
     it { should have_selector('div', text: 'Изображения') }
+    it { should have_selector('div', text: 'Части') }
     it { should have_selector('a', text: 'Добавить костюм') }
   end
 
@@ -41,6 +42,7 @@ describe "CostumesPages" do
     it { should have_selector('div', text: 'Цена') }
     it { should have_selector('div', text: 'Доступность') }
     it { should have_selector('div', text: 'Комментарий') }
+    it { should have_selector('div', text: 'Части') }
     it { should have_selector('div', text: 'Изображения') }
   end
 

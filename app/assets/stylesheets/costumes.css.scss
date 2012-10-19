@@ -20,17 +20,21 @@
             padding-left: 5px;
         }
         &.availability {
-            width: 150px;
+            width: 100px;
             padding-left: 5px;
         }
         &.price {
+            padding-left: 5px;
+            width: 50px;
+        }
+        &.parts {
             padding-left: 5px;
             width: 150px;
         }
         &.picture {
             width: 100%;
             padding-left: 750px;
-            margin-left: -750px;
+            margin-left: -755px;
             position: static;
         }
     }

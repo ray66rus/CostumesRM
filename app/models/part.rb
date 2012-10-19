@@ -22,6 +22,11 @@ class Part < ActiveRecord::Base
   before_destroy :delete_associated_costume
   after_destroy :delete_associated_pictures
   
+  def can_be_added_to_costume?
+    return self.costumes.length < 2
+  end
+  
+  private
   def create_associated_costume
     if self.costumes.length == 0
       self.costumes.create(:name => self.name)

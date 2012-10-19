@@ -5,8 +5,9 @@
     <div class='table-cell operations'><h3>Операции</h3></div>
     <div class='table-cell name'><h3>Название</h3></div>
     <div class='table-cell comment'><h3>Комментарий</h3></div>
-    <div class='table-cell place'><h3>Доступность</h3></div>
+    <div class='table-cell availability'><h3>Доступность</h3></div>
     <div class='table-cell price'><h3>Цена</h3></div>
+    <div class='table-cell parts'><h3>Части</h3></div>
     <div class='table-cell pictures'><h3>Изображения</h3></div>
   </div>
   
@@ -24,6 +25,13 @@
       <div class='table-cell comment'><%= costume.comment.nil? || costume.comment.empty? ? "&nbsp;".html_safe : costume.comment %></div>
       <div class='table-cell availability'><%= Costume::AVAILABILITY_TO_AVAILABILITY_NAME[costume.availability] %></div>
       <div class='table-cell price'><%= costume.price.nil? ? "&nbsp;".html_safe : costume.price %></div>
+      <div class='table-cell parts'>
+        <% parts_number = costume.parts.size %>
+        <% costume.parts.each_with_index do |part, idx| %>
+        <%= part.name %>
+        <%= raw(idx == parts_number - 1 ? "" : "<br/>") %>
+        <% end %>
+      </div>
       <div class='table-cell picture'>
         <% costume.pictures.each do |picture| %>
           <%= image_tag picture.image.url, :width => '20' %>

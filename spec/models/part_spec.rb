@@ -25,6 +25,7 @@ describe "Part" do
   it { should respond_to(:name) }
   it { should respond_to(:comment) }
   it { should respond_to(:place) }
+  it { should respond_to(:can_be_added_to_costume?) }
   
   it { should be_valid }
   
@@ -45,13 +46,17 @@ describe "Part" do
     it "should have the same name with costume" do
       @costumes.first.name.should eq(@part.name)
     end
+    
+    it "can be added to costume" do
+      @part.can_be_added_to_costume?.should be_true
+    end
   end
 
   describe "when destroing with two costumes attached" do
     before { @part.costumes.create(:name => "new costume") }
 
-    it "couldn't be deleted when costumes attached" do
-      @part.costumes.length.should == 2
+    it "can't be added to costume" do
+      @part.can_be_added_to_costume?.should be_false
     end
 
     it "couldn't be deleted when costumes attached" do

@@ -12,6 +12,7 @@ class CostumesController < ApplicationController
     respond_to do |format|
       if @costume.save
         _add_picture(@costume, params[:pictures][:new_picture])
+        _add_part(@costume, params[:parts][:new_part])
         format.html { redirect_to action: "index", notice: 'Костюм создан' }
       else
         format.html { render action: "new" }
@@ -24,6 +25,14 @@ class CostumesController < ApplicationController
       return
     end
     costume.pictures.create({ :image => picture });
+    costume.save
+  end
+
+  def _add_part(costume, part_id)
+    if part_id.empty?
+      return
+    end
+    costume.parts << Part.find(part_id)
     costume.save
   end
   
@@ -58,12 +67,15 @@ class CostumesController < ApplicationController
   
   def update
     @costume = Costume.find(params[:id])
-
     respond_to do |format|
       if @costume.update_attributes(params[:costume])
         if !params[:pictures].nil?
           _remove_pictures(@costume, params[:pictures])
           _add_picture(@costume, params[:pictures][:new_picture])
+        end
+        if !params[:parts].nil?
+          _remove_parts(@costume, params[:parts].keys)
+          _add_part(@costume, params[:parts][:new_part])
         end
         format.html { redirect_to action: "index", notice: 'Данные о костюме обновлены' }
       else
@@ -77,6 +89,15 @@ class CostumesController < ApplicationController
       if removed_pictures['picture-' + i.to_s]
         picture.destroy
       end
+    end
+  end
+
+  def _remove_parts(costume, removed_parts)
+    removed_parts.each do |part_id|
+      if part_id == 'new_part'
+        next
+      end
+      costume.parts.delete(Part.find(part_id))
     end
   end
 

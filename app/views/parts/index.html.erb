@@ -12,7 +12,7 @@
   
   <% @parts.each do |part| %>
     <div class='table-row'>
-      <% price = part.costumes.first.price %>
+      <% price = part.costumes.first.nil? ? nil : part.costumes.first.price %>
       <% if price.nil? then price = 0 end %>
        <div class='table-cell operations'>
         <%= link_to 'Удалить', delete_part_path(part), method: :delete, data: { confirm: 'Вы уверены?' } %>
