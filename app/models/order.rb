@@ -20,4 +20,19 @@ class Order < ActiveRecord::Base
   has_and_belongs_to_many :costumes
   belongs_to :user
   belongs_to :client
+  
+  after_initialize :init
+  before_validation :validate_costumes_and_users
+  
+  private
+  def init
+    self.price ||= '0'
+    self.payed_status ||= 'n'
+    self.activity_status ||= 'n'
+  end
+  
+  def validate_costumes_and_users
+    return (self.costumes.size > 0) && !self.client.nil?
+  end
+  
 end
