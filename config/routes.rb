@@ -24,4 +24,7 @@ CostumesRM::Application.routes.draw do
   get 'costumes/:id/edit' => 'costumes#edit', :as => :edit_costume
   put 'costumes/:id' => 'costumes#update', :as => :update_costume
   delete 'costumes/:id' => 'costumes#delete', :as => :delete_costume
+  
+  get 'orders/new' => 'orders#new', :as => :add_order
+  post 'orders' => 'orders#create', :as => :create_order
 end

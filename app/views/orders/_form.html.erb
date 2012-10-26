@@ -1,0 +1,12 @@
+<%= form_for @order, :url => link do |f| %>
+
+  <%= render :partial => 'common/errors', :locals => { :object => @order, :object_name => 'заказ' } %>
+
+  <div class="client">
+    <%= f.label 'Клиент' %><br />
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
