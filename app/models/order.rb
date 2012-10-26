@@ -17,7 +17,9 @@
 
 class Order < ActiveRecord::Base
   attr_accessible :activity_status, :payed_status, :price, :take_time, :planed_return_time, :real_return_time
-  has_and_belongs_to_many :costumes
+  has_and_belongs_to_many :costumes,
+    :after_add => :add_costume_price,
+    :after_remove => :remove_costume_price
   belongs_to :user
   belongs_to :client
   
@@ -33,6 +35,14 @@ class Order < ActiveRecord::Base
   
   def validate_costumes_and_users
     return (self.costumes.size > 0) && !self.client.nil?
+  end
+  
+  def add_costume_price(costume)
+    self.price += costume.price
+  end
+  
+  def remove_costume_price(costume)
+    self.price -= costume.price
   end
   
 end
