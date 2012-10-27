@@ -3,7 +3,34 @@
   <%= render :partial => 'common/errors', :locals => { :object => @order, :object_name => 'заказ' } %>
 
   <div class="client">
-    <%= f.label 'Клиент' %><br />
+    <%= f.label :client %><br />
+    <%= f.collection_select :client, Client.all, :id, :name %>
+  </div>
+
+  <div class="price">
+    <%= f.label :price %><br />
+    <%= f.number_field 'price', :min => 0 %>
+  </div>
+  
+  <div class="payed_status">
+    <%= f.label :payed_status %>&nbsp;
+    <%= f.select 'payed_status', Order::PAYED_TO_PAYED_NAME_MAP.invert %>
+  </div>
+  
+  <div class="costumes">
+    <%= f.label :costumes %><br />
+    <div id='costumes'>
+      <% Costume.all.each do |costume| %>
+        <span>
+          <%= costume.name %>
+          <%= hidden_field_tag 'order[costumes]', costume.id, {:id => nil} %>&nbsp;
+          <%= f.button 'Удалить', :type => 'button' %><br />
+        </span>
+      <% end %>
+    </div>
+    <%= select_tag '', options_from_collection_for_select(Costume.all, :id, :name),
+        {:include_blank => true } %>&nbsp;
+    <%= f.button 'Добавить', :type => 'button' %>
   </div>
   
   <div class="actions">

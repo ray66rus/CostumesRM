@@ -4,7 +4,11 @@ require 'spec_helper'
 
 describe "Order" do
   
-  before { @order = Order.new(take_time: "11.11.2012") }
+  before {
+    @order = Order.new(take_time: "11.11.2012")
+    @order.client = Client.new(name: "Тестовый клиент")
+    @order.costumes << Costume.new({name: 'Тестовый костюм', price: 100})
+  }
   
   subject { @order }
   
@@ -18,7 +22,7 @@ describe "Order" do
   it { should respond_to(:client) }
   it { should respond_to(:costumes) }
   
-  it { should_not be_valid }
+  it { should be_valid }
   
   describe "when price is default" do
     it { @order.price.should == 0 }
@@ -32,17 +36,26 @@ describe "Order" do
     it { @order.payed_status.should == "n" }
   end
 
-  describe "when has client and costume" do
-    before {
-      @order.client = Client.new(name: "Тестовый клиент")
-      @order.costumes << Costume.new({name: 'Тестовый костюм', price: 100})
-    }
-    it { should be_valid }
-    it {
-      @order.price.should == 100
-      @order.costumes.delete(@order.costumes.first)
-      @order.price.should == 0
-    }
+  describe "when has no costume" do
+    before { @order.costumes.delete(@order.costumes.first) }
+    it { should_not be_valid }
   end
+
+  describe "when has no client" do
+    before { @order.client = nil }
+    it { should_not be_valid }
+  end
+  
+  describe "when payed status is wrong" do
+    before { @order.payed_status = 'q' }
+    it { should_not be_valid }
+  end
+
+  describe "when activity status is wrong" do
+    before { @order.activity_status = 'q' }
+    it { should_not be_valid }
+  end
+  
+  it { @order.delete }
   
 end

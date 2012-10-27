@@ -1,3 +1,4 @@
+# encoding: utf-8
 # == Schema Information
 #
 # Table name: orders
@@ -17,11 +18,16 @@
 
 class Order < ActiveRecord::Base
   attr_accessible :activity_status, :payed_status, :price, :take_time, :planed_return_time, :real_return_time
-  has_and_belongs_to_many :costumes,
-    :after_add => :add_costume_price,
-    :after_remove => :remove_costume_price
+  has_and_belongs_to_many :costumes
   belongs_to :user
   belongs_to :client
+  
+  PAYED_TO_PAYED_NAME_MAP = { 'y' => 'Оплачен', 'n' => 'Не оплачен' }
+  ACTIVE_TO_ACTIVE_NAME_MAP = { 'y' => 'В работе', 'n' => 'Архивный' }
+  
+  REGEXP = /\Ay|n\z/
+  validates :activity_status, format: { with: REGEXP }
+  validates :payed_status, format: { with: REGEXP }
   
   after_initialize :init
   before_validation :validate_costumes_and_users
@@ -30,19 +36,11 @@ class Order < ActiveRecord::Base
   def init
     self.price ||= '0'
     self.payed_status ||= 'n'
-    self.activity_status ||= 'n'
+    self.activity_status ||= 'y'
   end
   
   def validate_costumes_and_users
     return (self.costumes.size > 0) && !self.client.nil?
-  end
-  
-  def add_costume_price(costume)
-    self.price += costume.price
-  end
-  
-  def remove_costume_price(costume)
-    self.price -= costume.price
   end
   
 end
