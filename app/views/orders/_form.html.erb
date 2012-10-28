@@ -20,17 +20,24 @@
   <div class="costumes">
     <%= f.label :costumes %><br />
     <div id='costumes'>
-      <% Costume.all.each do |costume| %>
+      <% @order.costumes.each do |costume| %>
         <span>
           <%= costume.name %>
-          <%= hidden_field_tag 'order[costumes]', costume.id, {:id => nil} %>&nbsp;
-          <%= f.button 'Удалить', :type => 'button' %><br />
+          <%= hidden_field_tag 'order[costumes]', costume.id, {:id => nil} %>
+          <%= f.button 'Удалить', :type => 'button', :onclick => "OrdersHelper.RemoveCostume(event)" %><br />
         </span>
       <% end %>
     </div>
-    <%= select_tag '', options_from_collection_for_select(Costume.all, :id, :name),
-        {:include_blank => true } %>&nbsp;
-    <%= f.button 'Добавить', :type => 'button' %>
+    <span>
+    <% costume_selector_options = [] %>
+    <% Costume.all.each do |costume| %>
+      <% if costume.can_be_added_to_order? %>
+        <% costume_selector_options.push("<option value='" + costume.id.to_s() + "' price='" + costume.price.to_s() + "'>" + costume.name + "</option>") %>
+      <% end %>
+    <% end %>
+      <%= select_tag '', costume_selector_options.join().html_safe(), {:id => 'costume_selector', :name => nil} %>&nbsp;
+      <%= f.button 'Добавить', :type => 'button', :onclick => "OrdersHelper.AddCostume(event)" %>
+    </span>
   </div>
   
   <div class="actions">

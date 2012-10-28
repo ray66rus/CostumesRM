@@ -18,5 +18,6 @@ describe "OrdersPages" do
     it { should have_selector('label', text: 'Дата выдачи:') }
     it { should have_selector('label', text: 'Дата возврата (планируемая):') }
     it { should have_selector('label', text: 'Дата возврата (фактическая):') }
+    it { should have_selector('label', text: 'Комментарий') }
   end
 end

@@ -6,7 +6,7 @@
 #  id           :integer          not null, primary key
 #  name         :string(255)
 #  price        :integer
-#  type         :string(255)
+#  costume_type :string(255)
 #  availability :string(255)
 #  comment      :text
 #  created_at   :datetime         not null
@@ -29,6 +29,13 @@ class Costume < ActiveRecord::Base
   after_initialize :init
   before_validation :validate_associated_pictures
   after_destroy :delete_associated_pictures
+
+  def can_be_added_to_order?
+    if self.availability == "n"
+      return false
+    end
+    return self.orders.where({:activity_status => "y"}).size() == 0
+  end
   
   private
   def init

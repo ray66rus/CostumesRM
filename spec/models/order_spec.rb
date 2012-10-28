@@ -1,4 +1,22 @@
 # encoding: utf-8
+# == Schema Information
+#
+# Table name: orders
+#
+#  id                 :integer          not null, primary key
+#  price              :integer
+#  payed_status       :string(255)
+#  activity_status    :string(255)
+#  take_time          :datetime
+#  planed_return_time :datetime
+#  real_return_time   :datetime
+#  user_id            :integer
+#  client_id          :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  comment            :text
+#
+
 
 require 'spec_helper'
 
@@ -19,6 +37,7 @@ describe "Order" do
   it { should respond_to(:planed_return_time) }
   it { should respond_to(:real_return_time) }
   it { should respond_to(:user) }
+  it { should respond_to(:comment) }
   it { should respond_to(:client) }
   it { should respond_to(:costumes) }
   

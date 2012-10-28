@@ -13,6 +13,7 @@
 #  client_id          :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  comment            :text
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

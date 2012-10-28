@@ -6,7 +6,7 @@
 #  id           :integer          not null, primary key
 #  name         :string(255)
 #  price        :integer
-#  type         :string(255)
+#  costume_type :string(255)
 #  availability :string(255)
 #  comment      :text
 #  created_at   :datetime         not null
@@ -31,6 +31,7 @@ describe "Costume" do
   it { should respond_to(:price) }
   it { should respond_to(:availability) }
   it { should respond_to(:costume_type) }
+  it { should respond_to(:can_be_added_to_order?) }
   
   it { should be_valid }
   it { @costume.costume_type.should == 'simple' }

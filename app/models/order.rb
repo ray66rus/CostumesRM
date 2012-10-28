@@ -14,10 +14,11 @@
 #  client_id          :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  comment            :text
 #
 
 class Order < ActiveRecord::Base
-  attr_accessible :activity_status, :payed_status, :price, :take_time, :planed_return_time, :real_return_time
+  attr_accessible :activity_status, :payed_status, :price, :take_time, :planed_return_time, :real_return_time, :comment
   has_and_belongs_to_many :costumes
   belongs_to :user
   belongs_to :client
