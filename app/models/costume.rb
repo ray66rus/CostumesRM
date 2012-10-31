@@ -31,6 +31,18 @@ class Costume < ActiveRecord::Base
   after_destroy :delete_associated_pictures
 
   def can_be_added_to_order?
+    if self.belongs_to_active_order?
+      return false
+    end
+    self.parts.each do |part|
+      if part.belongs_to_assigned_costume?
+        return false
+      end
+    end
+    return true
+  end
+
+  def belongs_to_active_order_and_available?
     if self.availability == "n"
       return false
     end

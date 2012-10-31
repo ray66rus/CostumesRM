@@ -31,6 +31,7 @@ describe "Costume" do
   it { should respond_to(:price) }
   it { should respond_to(:availability) }
   it { should respond_to(:costume_type) }
+  it { should respond_to(:belongs_to_active_order_and_available?) }
   it { should respond_to(:can_be_added_to_order?) }
   
   it { should be_valid }

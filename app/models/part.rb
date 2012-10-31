@@ -22,6 +22,15 @@ class Part < ActiveRecord::Base
   before_destroy :delete_associated_costume
   after_destroy :delete_associated_pictures
   
+  def belongs_to_assigned_costume?
+    self.costumes.each do |costume|
+      if costume.belongs_to_active_order_and_available?
+        return true
+      end
+    end
+    return false
+  end
+  
   def can_be_added_to_costume?
     return self.costumes.length < 2
   end
