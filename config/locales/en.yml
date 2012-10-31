@@ -9,3 +9,5 @@ en:
         client: "Клиент" 
         price: "Цена"
         costumes: "Костюмы"
+        comment: "Комментарий"
+        take_time: "Дата выдачи:"

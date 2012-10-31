@@ -40,6 +40,16 @@
     </span>
   </div>
   
+  <div class="taketime">
+    <%= f.label :take_time %>&nbsp;
+    <%= f.datepicker 'take_time' %>
+  </div>
+  
+  <div class="comment">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
