@@ -11,8 +11,12 @@ class CostumesController < ApplicationController
     
     respond_to do |format|
       if @costume.save
-        _add_picture(@costume, params[:pictures][:new_picture])
-        _add_part(@costume, params[:parts][:new_part])
+        if !params[:pictures].nil?
+          _add_picture(@costume, params[:pictures][:new_picture])
+        end
+        if !params[:parts].nil?
+          _add_part(@costume, params[:parts][:new_part])
+        end
         format.html { redirect_to action: "index", notice: 'Костюм создан' }
       else
         format.html { render action: "new" }

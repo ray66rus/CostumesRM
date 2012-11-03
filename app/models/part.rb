@@ -24,7 +24,7 @@ class Part < ActiveRecord::Base
   
   def belongs_to_assigned_costume?
     self.costumes.each do |costume|
-      if costume.belongs_to_active_order_and_available?
+      if costume.belongs_to_active_order?
         return true
       end
     end

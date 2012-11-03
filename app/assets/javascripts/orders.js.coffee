@@ -3,7 +3,7 @@ class OrdersHelperClass
     ThisCostumeContainer = $(evt.srcElement).parent();
     CostumeSelector = ThisCostumeContainer.find("select");
     SelectedOption = CostumeSelector.find('option:selected')
-    AddedCostumeVal = SelectedOption.val()
+    AddedCostumeId = SelectedOption.val()
     AddedCostumeName = SelectedOption.text()
     AddedCostumePrice = SelectedOption.attr("price")
     SelectedOption.remove()
@@ -13,7 +13,8 @@ class OrdersHelperClass
     NewCostumeContainer.attr("price", AddedCostumePrice)
     NewCostumeInput = $("<input />")
     NewCostumeInput.attr("type", "hidden")
-    NewCostumeInput.attr("name", "order[costumes]")
+    NewCostumeInput.attr("name", "order[costumes][]")
+    NewCostumeInput.val(AddedCostumeId)
     NameCostumeButton = $("<button type='button'>Удалить</button>")
     NameCostumeButton.click(OrdersHelper.RemoveCostume)
     NewCostumeContainer.append(NewCostumeInput)

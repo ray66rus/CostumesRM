@@ -31,6 +31,9 @@ class Costume < ActiveRecord::Base
   after_destroy :delete_associated_pictures
 
   def can_be_added_to_order?
+    if self.availability == "n"
+      return false
+    end
     if self.belongs_to_active_order?
       return false
     end
@@ -42,11 +45,8 @@ class Costume < ActiveRecord::Base
     return true
   end
 
-  def belongs_to_active_order_and_available?
-    if self.availability == "n"
-      return false
-    end
-    return self.orders.where({:activity_status => "y"}).size() == 0
+  def belongs_to_active_order?
+    return self.orders.where({:activity_status => "y"}).size() > 0
   end
   
   private

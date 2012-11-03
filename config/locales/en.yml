@@ -11,3 +11,5 @@ en:
         costumes: "Костюмы"
         comment: "Комментарий"
         take_time: "Дата выдачи:"
+        planed_return_time: "Дата возврата (планируемая):"
+        real_return_time: "Дата возврата (фактическая):"

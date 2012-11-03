@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new
-    
+
     if @order.save
       redirect_to action: "index", notice: "Заказ создан"
     else

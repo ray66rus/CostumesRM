@@ -10,7 +10,9 @@ class PartsController < ApplicationController
     
     respond_to do |format|
       if @part.save
-        _add_picture(@part, params[:pictures][:new_picture])
+        if !params[:pictures].nil?
+          _add_picture(@part, c[:new_picture])
+        end
         _set_price_for_attached_costume(@part, params[:price])
         format.html { redirect_to action: "index", notice: 'Часть костюма создана' }
       else
