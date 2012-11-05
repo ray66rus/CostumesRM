@@ -4,7 +4,7 @@
 
   <div class="client">
     <%= f.label :client %><br />
-    <%= f.collection_select :client, Client.all, :id, :name %>
+    <%= select_tag :order_client, options_from_collection_for_select(Client.all, :id, :name), {:name => "order_client"} %>
   </div>
 
   <div class="price">
@@ -23,7 +23,7 @@
       <% @order.costumes.each do |costume| %>
         <span>
           <%= costume.name %>
-          <%= hidden_field_tag 'order[costumes][]', costume.id, {:id => nil} %>
+          <%= hidden_field_tag 'order_costumes[]', costume.id, {:id => nil} %>
           <%= f.button 'Удалить', :type => 'button', :onclick => "OrdersHelper.RemoveCostume(event)" %><br />
         </span>
       <% end %>
@@ -35,7 +35,7 @@
         <% costume_selector_options.push("<option value='" + costume.id.to_s() + "' price='" + costume.price.to_s() + "'>" + costume.name + "</option>") %>
       <% end %>
     <% end %>
-      <%= select_tag '', costume_selector_options.join().html_safe(), {:id => 'costume_selector', :name => nil} %>&nbsp;
+      <%= select_tag :costume_selector, costume_selector_options.join().html_safe(), {:name => nil} %>&nbsp;
       <%= f.button 'Добавить', :type => 'button', :onclick => "OrdersHelper.AddCostume(event)" %>
     </span>
   </div>

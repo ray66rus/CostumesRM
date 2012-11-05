@@ -13,7 +13,7 @@ class OrdersHelperClass
     NewCostumeContainer.attr("price", AddedCostumePrice)
     NewCostumeInput = $("<input />")
     NewCostumeInput.attr("type", "hidden")
-    NewCostumeInput.attr("name", "order[costumes][]")
+    NewCostumeInput.attr("name", "order_costumes[]")
     NewCostumeInput.val(AddedCostumeId)
     NameCostumeButton = $("<button type='button'>Удалить</button>")
     NameCostumeButton.click(OrdersHelper.RemoveCostume)
