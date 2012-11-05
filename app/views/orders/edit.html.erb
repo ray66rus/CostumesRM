@@ -1,0 +1,4 @@
+<% provide(:title, t("order.titles.edit")) %>
+<h1><%= t("order.headers.edit") %></h1>
+
+<%= render :partial => 'form', :locals => { :link => update_order_path(@order) } %>

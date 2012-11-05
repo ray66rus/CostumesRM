@@ -33,6 +33,14 @@ class Order < ActiveRecord::Base
   after_initialize :init
   before_validation :validate_costumes_and_users
   
+  def active?
+    return self.activity_status == "y"
+  end
+  
+  def payed?
+    return self.payed_status == "y"
+  end
+  
   private
   def init
     self.price ||= '0'

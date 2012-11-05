@@ -15,3 +15,20 @@
 //= require jquery.ui.all
 //= require jquery.ui.datepicker-ru
 //= require_tree .
+
+(function(window, undefined) {
+"use strict"
+
+window.GlobalHelpersClass = function() {}
+
+GlobalHelpersClass.prototype.ShowProgressBar = function() {
+    console.log("show progress bar");
+}
+
+GlobalHelpersClass.prototype.HideProgressBar = function() {
+    console.log("hide progress bar");
+}
+
+})(window);
+
+var GlobalHelpers = new GlobalHelpersClass;

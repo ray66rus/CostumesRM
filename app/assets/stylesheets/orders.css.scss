@@ -1,3 +1,65 @@
-// Place all the styles related to the Orders controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.orders-container {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    
+    .table-cell {
+        float: left;
+        text-overflow: ellipsis;
+        position: relative;
+        
+        &.operations {
+            width: 210px;
+        }
+        &.client {
+            width: 150px;
+        }
+        &.costumes {
+            width: 150px;
+        }
+        &.price {
+            width: 52px;
+        }
+        &.take-date {
+            width: 110px;
+        }
+        &.return-date {
+            width: 190px;
+        }
+        &.picture {
+            width: 100%;
+            padding-left: 880px;
+            margin-left: -880px;
+            position: static;
+        }
+    }
+    
+    .table-row {
+        float: left;
+        width: 100%;
+        border-bottom: 2px groove;
+        padding-bottom: 2px;
+        
+        &.header {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        &.payed {
+            background-color: green;
+        }
+        
+        &.archive, &.played.archive {
+            background-color: gray;
+        }
+        
+        .return-date .warning {
+            background-color: red;
+        }
+    }
+    
+    .hidden {
+        display: none;
+    }
+}

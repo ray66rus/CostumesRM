@@ -1,4 +1,4 @@
-<% provide(:title, 'Новый заказ') %>
-<h1>Добавление заказа</h1>
+<% provide(:title, t("order.titles.create")) %>
+<h1><%= t("order.headers.create") %></h1>
 
 <%= render :partial => 'form', :locals => { :link => create_order_path(@order) } %>

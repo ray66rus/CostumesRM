@@ -27,4 +27,10 @@ CostumesRM::Application.routes.draw do
   
   get 'orders/new' => 'orders#new', :as => :add_order
   post 'orders' => 'orders#create', :as => :create_order
+  get 'orders' => 'orders#index', :as => :list_orders
+  get 'orders/:id/edit' => 'orders#edit', :as => :edit_order
+  put 'orders/:id' => 'orders#update', :as => :update_order
+  delete 'orders/:id' => 'orders#delete', :as => :delete_order
+  post 'orders/:id/set_activity_state' => 'orders#set_activity_state', :as => :set_order_activity_state
+
 end

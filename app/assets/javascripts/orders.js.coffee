@@ -41,5 +41,40 @@ class OrdersHelperClass
     NewPrice = parseInt(PriceControl.val()) - parseInt(CostumePrice)
     NewPrice = 0 if(NewPrice < 0)
     PriceControl.val(NewPrice)
+    
+  UpdateOrderState: (evt, data) ->
+    if data.status == "ok"
+      container = $(evt.currentTarget).closest(".operations")
+      evt.data.self._setActivityDisplay container, data.activity
+    else
+      alert data.error_message        
+
+  FailUpdatingOrderState: (evt) ->
+    alert("Can't access server")
+    
+  _setActivityDisplay: (container, isActive) ->
+    activeOrderOperations = container.find(".active-operations")
+    archiveOrderOperations = container.find(".archive-operations")
+    orderTableRow = container.closest(".table-row")
+    if isActive
+        activeOrderOperations.removeClass("hidden")
+        archiveOrderOperations.addClass("hidden")
+        orderTableRow.removeClass("archive")
+    else
+        activeOrderOperations.addClass("hidden")
+        archiveOrderOperations.removeClass("hidden")
+        orderTableRow.addClass("archive")        
 
 (exports ? this).OrdersHelper = new OrdersHelperClass
+
+$ ->
+    $(".order-close, .order-reopen").on 'ajax:beforeSend', GlobalHelpers.ShowProgressBar
+        
+$ ->
+    $(".order-close, .order-reopen").on 'ajax:complete', GlobalHelpers.HideProgressBar
+
+$ ->
+    $(".order-close, .order-reopen").on 'ajax:success', { self: OrdersHelper}, OrdersHelper.UpdateOrderState
+
+$ ->
+    $(".order-close, .order-reopen").on 'ajax:error', OrdersHelper.FailUpdatingOrderState

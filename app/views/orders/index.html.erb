@@ -1,0 +1,62 @@
+<% provide(:title, t("order.titles.list")) %>
+<h1><%= t("order.headers.list") %></h1>
+<div class='orders-container'>
+  <div class='table-row header'>
+    <div class='table-cell operations'><h3><%= t("order.labels.operations") %></h3></div>
+    <div class='table-cell client'><h3><%= t("order.labels.client") %></h3></div>
+    <div class='table-cell costumes'><h3><%= t("order.labels.costumes") %></h3></div>
+    <div class='table-cell price'><h3><%= t("order.labels.price") %></h3></div>
+    <div class='table-cell take-date'><h3><%= t("order.labels.take_date") %></h3></div>
+    <div class='table-cell return-date'><h3><%= t("order.labels.return_date") %></h3></div>
+    <div class='table-cell comment'><h3><%= t("order.labels.comment") %></h3></div>
+  </div>
+  
+  <% @orders.each do |order| %>
+    <div class='table-row<%= order.active? ? '' : ' archive' %><%= order.payed? ? ' payed' : ''%>'>
+      <div class='table-cell operations'>
+        <%= link_to t("order.buttons.delete"), delete_order_path(order), method: :delete, data: { confirm: t("order.messages.are_u_sure") } %>
+        <span class='active-operations<%= order.active? ? '' : ' hidden' %>'>
+          <%= link_to t("order.buttons.edit"), edit_order_path(order) %>
+          <%= link_to t("order.buttons.close"), set_order_activity_state_path(order) + "?is_active=n",
+            :method => "post",
+            :remote => true,
+            :confirm => t("order.messages.are_u_sure"),
+            :class => "order-close" %>
+        </span>
+        <span class='archive-operations<%= order.active? ? ' hidden' : '' %>'>
+          <%= link_to t("order.buttons.reopen"), set_order_activity_state_path(order) + "?is_active=y",
+            :method => "post",
+            :remote => true,
+            :confirm => t("order.messages.are_u_sure"),
+            :class => "order-reopen" %>
+        </span>
+      </div>
+      
+      <div class='table-cell client'><%= order.client.name %></div>
+      <div class='table-cell costumes'>
+        <% order.costumes.each do |costume| %>
+          <%= costume.name %>
+          <%= raw "<br />" unless costume == order.costumes.last %>
+        <% end %>
+      </div>
+      <div class='table-cell price'><%= order.price %></div>
+      <div class='table-cell take-date'><%= order.take_time.nil? ? '---' : order.take_time %></div>
+      <div class='table-cell return-date'>
+        <% if order.real_return_time.nil? %>
+          <% if order.planed_return_time.nil? %>
+            ---
+          <% else %>
+            <span class="<%= order.planed_return_time < DateTime.now ? 'warning' : ''%>"><%= order.planed_return_time %></span>
+          <% end %>
+        <% else %>
+          <%= order.real_return_time %>&nbsp;(<%= order.planed_return_time %>)
+        <% end %>
+      </div>
+      <div class='table-cell comment'><%= order.comment %></div>
+    </div>
+  <% end %>
+  
+  <div class='clear-both'></div>
+  
+  <%= link_to t("order.buttons.add_new"), add_order_path %>
+</div>

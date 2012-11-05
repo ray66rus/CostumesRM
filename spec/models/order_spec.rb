@@ -40,6 +40,8 @@ describe "Order" do
   it { should respond_to(:comment) }
   it { should respond_to(:client) }
   it { should respond_to(:costumes) }
+  it { should respond_to(:active?) }
+  it { should respond_to(:payed?) }
   
   it { should be_valid }
   

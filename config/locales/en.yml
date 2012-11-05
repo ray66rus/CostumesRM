@@ -13,3 +13,34 @@ en:
         take_time: "Дата выдачи:"
         planed_return_time: "Дата возврата (планируемая):"
         real_return_time: "Дата возврата (фактическая):"
+
+  order:
+    messages:
+      are_u_sure: "Вы уверены?"
+      order_not_found: "Заказ не найден"
+      order_created: "Заказ создан"
+      order_deleted: "Заказ удален"
+      order_cant_be_deleted: "Невозможно удалить заказ"
+      order_updated: "Заказ изменен"
+    buttons:
+      add_new: "Создать заказ"
+      delete: "Удалить"
+      edit: "Редактировать"
+      close: "Закрыть"
+      reopen: "Открыть"
+    labels:
+      operations: "Операции"
+      client: "Клиент"
+      costumes: "Костюмы"
+      price: "Сумма"
+      take_date: "Дата выдачи"
+      return_date: "Дата возврата"
+      comment: "Комментарий"
+    titles:
+      list: "Заказы"
+      edit: "Изменение заказа"
+      create: "Добавление заказа"
+    headers:
+      list: "Список заказов"
+      edit: "Изменение данных заказа"
+      create: "Создание заказа"
