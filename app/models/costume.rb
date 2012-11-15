@@ -30,23 +30,35 @@ class Costume < ActiveRecord::Base
   before_validation :validate_associated_pictures
   after_destroy :delete_associated_pictures
 
-  def can_be_added_to_order?
+  def can_be_added_to_order?(order)
     if self.availability == "n"
       return false
     end
-    if self.belongs_to_active_order?
+    dates = [ :begin => order.take_time,
+            :end => order.real_return_time.nil? ? order.real_return_time : order.planed_return_time
+          ];
+    if self.belongs_to_active_order_by_dates?(dates)
       return false
     end
     self.parts.each do |part|
-      if part.belongs_to_assigned_costume?
+      if part.belongs_to_assigned_costume_by_dates?(dates)
         return false
       end
     end
     return true
   end
 
-  def belongs_to_active_order?
-    return self.orders.where({:activity_status => "y"}).size() > 0
+  def belongs_to_active_order_by_dates?(dates)
+    active_orders = self.orders.where({:activity_status => "y"});
+    active_orders.each do |order|
+      take_time = order.take_time
+      return_time = order.real_return_time.nil? ?
+        order.planed_return_time : order.real_return_time;
+      if self.dates_overlaped?(dates, [:begin => take_time, :end => return_time])
+        return true
+      end
+    end
+    return false;
   end
   
   private
@@ -67,5 +79,13 @@ class Costume < ActiveRecord::Base
     self.pictures.each do |picture|
       picture.destroy
     end
+  end
+  
+  protected
+  def dates_overlaped?(first_date, second_date)
+    return
+      (first_date[:begin] >= second_date[:begin] && first_date[:begin] <= second_date[:end]) ||
+      (first_date[:end] >= second_date[:begin] && first_date[:end] <= second_date[:end]) ||
+      (first_date[:begin] < second_time[:begin] && first_date[:end] > second_date[:end])
   end
 end

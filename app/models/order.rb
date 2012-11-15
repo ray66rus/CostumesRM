@@ -17,7 +17,38 @@
 #  comment            :text
 #
 
+class OrderValidator < ActiveModel::Validator
+  def validate(record)
+    check_times(record)
+    check_costumes(record)
+    check_client(record)
+  end
+  
+  private
+  def check_times(record)
+    if(record.planed_return_time.nil? || record.take_time.nil?)
+      return
+    end
+    if record.planed_return_time < record.take_time
+      record.errors.add(:planed_return_time, I18n.t("order.errors.return_time_is_too_early"))
+    end
+  end
+  
+  def check_costumes(record)
+    if record.costumes.size == 0
+      record.errors.add(:costumes, I18n.t("order.errors.no_costumes"))
+    end
+  end
+  
+  def check_client(record)
+    if record.client.nil?
+      record.errors.add(:client, I18n.t("order.errors.no_client"));
+    end
+  end
+end
+
 class Order < ActiveRecord::Base
+  include ActiveModel::Validations
   attr_accessible :activity_status, :payed_status, :price, :take_time, :planed_return_time, :real_return_time, :comment
   has_and_belongs_to_many :costumes
   belongs_to :user
@@ -27,11 +58,11 @@ class Order < ActiveRecord::Base
   ACTIVE_TO_ACTIVE_NAME_MAP = { 'y' => 'В работе', 'n' => 'Архивный' }
   
   REGEXP = /\Ay|n\z/
-  validates :activity_status, format: { with: REGEXP }
-  validates :payed_status, format: { with: REGEXP }
+  validates :activity_status, :payed_status, :format => { with: REGEXP }
+  validates :take_time, :planed_return_time, :presence => true
+  validates_with OrderValidator
   
   after_initialize :init
-  before_validation :validate_costumes_and_users
   
   def active?
     return self.activity_status == "y"
@@ -46,10 +77,7 @@ class Order < ActiveRecord::Base
     self.price ||= '0'
     self.payed_status ||= 'n'
     self.activity_status ||= 'y'
+    self.take_time ||= DateTime.now
+    self.planed_return_time ||= DateTime.now
   end
-  
-  def validate_costumes_and_users
-    return (self.costumes.size > 0) && !self.client.nil?
-  end
-  
 end

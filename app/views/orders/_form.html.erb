@@ -1,6 +1,6 @@
 <%= form_for @order, :url => link do |f| %>
 
-  <%= render :partial => 'common/errors', :locals => { :object => @order, :object_name => 'заказ' } %>
+  <%= render :partial => 'common/errors', :locals => { :object => @order, :object_name => Order.model_name.human.downcase } %>
 
   <div class="client">
     <%= f.label :client %><br />
@@ -31,7 +31,7 @@
     <span>
     <% costume_selector_options = [] %>
     <% Costume.all.each do |costume| %>
-      <% if costume.can_be_added_to_order? %>
+      <% if costume.can_be_added_to_order?(@order) %>
         <% costume_selector_options.push("<option value='" + costume.id.to_s() + "' price='" + costume.price.to_s() + "'>" + costume.name + "</option>") %>
       <% end %>
     <% end %>

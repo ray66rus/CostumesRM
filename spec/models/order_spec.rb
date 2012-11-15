@@ -23,7 +23,7 @@ require 'spec_helper'
 describe "Order" do
   
   before {
-    @order = Order.new(take_time: "11.11.2012")
+    @order = Order.new(take_time: "11.11.2012", planed_return_time: "12.11.2012")
     @order.client = Client.new(name: "Тестовый клиент")
     @order.costumes << Costume.new({name: 'Тестовый костюм', price: 100})
   }
@@ -60,6 +60,28 @@ describe "Order" do
   describe "when has no costume" do
     before { @order.costumes.delete(@order.costumes.first) }
     it { should_not be_valid }
+  end
+  
+  describe "when has no take_time" do
+    it {
+      @order.take_time = nil
+      should_not be_valid
+    }
+  end
+
+  describe "when has no return_time" do
+    it {
+      @order.planed_return_time = nil
+      should_not be_valid
+    }
+  end
+
+  describe "planed_return_time is greater than take_time" do
+    it {
+      @order.take_time = "12.12.2012"
+      @order.planed_return_time = "11.11.2012"
+      should_not be_valid
+    }
   end
 
   describe "when has no client" do

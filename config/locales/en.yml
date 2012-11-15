@@ -13,7 +13,15 @@ en:
         take_time: "Дата выдачи:"
         planed_return_time: "Дата возврата (планируемая):"
         real_return_time: "Дата возврата (фактическая):"
-
+  activerecord:
+    models:
+      order: "Заказ"
+    attributes:
+      order:
+        costumes: "Костюмы"
+        client: "Клиент"
+        take_time: "Дата выдачи"
+        planed_return_time: "Планируемая дата возврата"
   order:
     messages:
       are_u_sure: "Вы уверены?"
@@ -44,3 +52,7 @@ en:
       list: "Список заказов"
       edit: "Изменение данных заказа"
       create: "Создание заказа"
+    errors:
+      return_time_is_too_early: "раньше, чем дата выдачи"
+      no_costumes: "не добавлены"
+      no_client: "не определен"
