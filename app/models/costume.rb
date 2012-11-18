@@ -34,9 +34,9 @@ class Costume < ActiveRecord::Base
     if self.availability == "n"
       return false
     end
-    dates = [ :begin => order.take_time,
-            :end => order.real_return_time.nil? ? order.real_return_time : order.planed_return_time
-          ];
+    dates = { :begin => order.take_time,
+            :end => order.real_return_time.nil? ? order.planed_return_time : order.real_return_time
+    };
     if self.belongs_to_active_order_by_dates?(dates)
       return false
     end
@@ -54,7 +54,7 @@ class Costume < ActiveRecord::Base
       take_time = order.take_time
       return_time = order.real_return_time.nil? ?
         order.planed_return_time : order.real_return_time;
-      if self.dates_overlaped?(dates, [:begin => take_time, :end => return_time])
+      if self.dates_overlaped?(dates, {:begin => take_time, :end => return_time})
         return true
       end
     end
@@ -83,9 +83,6 @@ class Costume < ActiveRecord::Base
   
   protected
   def dates_overlaped?(first_date, second_date)
-    return
-      (first_date[:begin] >= second_date[:begin] && first_date[:begin] <= second_date[:end]) ||
-      (first_date[:end] >= second_date[:begin] && first_date[:end] <= second_date[:end]) ||
-      (first_date[:begin] < second_time[:begin] && first_date[:end] > second_date[:end])
+    return (first_date[:end] < second_date[:begin] or first_date[:begin] > second_date[:end]) ? false : true;
   end
 end
