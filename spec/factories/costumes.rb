@@ -6,6 +6,7 @@ FactoryGirl.define do
     price 100
     costume_type "complex"
     comment "комментарий\nк тестовому\nкостюму"
+    parts { [ FactoryGirl.create(:part) ] }
   end
   
   trait :simple do

@@ -31,7 +31,7 @@
     <span>
     <% costume_selector_options = [] %>
     <% Costume.all.each do |costume| %>
-      <% if costume.can_be_added_to_order?(@order) %>
+      <% if costume.can_be_added_to_order(@order) %>
         <% costume_selector_options.push("<option value='" + costume.id.to_s() + "' price='" + costume.price.to_s() + "'>" + costume.name + "</option>") %>
       <% end %>
     <% end %>

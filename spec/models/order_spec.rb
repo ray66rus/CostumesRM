@@ -23,9 +23,12 @@ require 'spec_helper'
 describe "Order" do
   
   before {
-    @order = Order.new(take_time: "11.11.2012", planed_return_time: "12.11.2012")
+    @order = Order.new(take_time: "11.11.2012", planed_return_time: "13.11.2012")
     @order.client = Client.new(name: "Тестовый клиент")
-    @order.costumes << Costume.new({name: 'Тестовый костюм', price: 100})
+    @test_part = Part.new({name: 'Рубашка'})
+    @test_costume = Costume.new({name: 'Тестовый костюм', price: 100})
+    @test_costume.parts << @test_part
+    @order.costumes << @test_costume
   }
   
   subject { @order }

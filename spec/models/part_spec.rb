@@ -25,7 +25,7 @@ describe "Part" do
   it { should respond_to(:comment) }
   it { should respond_to(:place) }
   it { should respond_to(:can_be_added_to_costume?) }
-  it { should respond_to(:belongs_to_assigned_costume_by_dates?) }
+  it { should respond_to(:does_belong_to_assigned_costume_by_dates) }
   
   it { should be_valid }
   
