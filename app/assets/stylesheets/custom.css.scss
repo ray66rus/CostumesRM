@@ -1,0 +1,27 @@
+@import "bootstrap";
+
+@mixin box_sizing {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+input, select {
+    @include box_sizing;
+}
+
+input, select {
+    height: auto !important;
+}
+
+#error_explanation {
+    color: #f00;
+    ul {
+        list-style: none !important;
+        margin: 0 0 18px 0;
+    }
+}
+
+.field_with_errors {
+    @extend .control-group;
+    @extend .error;
+}

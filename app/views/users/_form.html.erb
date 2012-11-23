@@ -1,1 +1,23 @@
+<div class='row'>
+  <div class='span6 offset3'>
+    <%= form_for @user, :url => link do |f| %>
+      <%= render :partial => 'shared/error_messages' %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+  
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+  
+      <%= f.label :password %>
+      <%= f.password_field :password %>
 
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.label :user_type %>
+      <%= f.select :user_type, User::TYPE_TO_TYPE_NAME.invert %>
+      <br /><br />
+      <%= f.submit nil, class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

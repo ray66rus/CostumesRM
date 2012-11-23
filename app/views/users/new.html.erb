@@ -1,1 +1,4 @@
+<% provide(:title, t('user.titles.create')) %>
+<h1 class='span6 offset2'><%= t('user.headers.create') %></h1>
 
+<%= render :partial => 'form', :locals => { :link => create_user_path(@user) } %>

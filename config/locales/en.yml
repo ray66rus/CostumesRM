@@ -13,6 +13,15 @@ en:
         take_time: "Дата выдачи:"
         planed_return_time: "Дата возврата (планируемая):"
         real_return_time: "Дата возврата (фактическая):"
+      user:
+        name: "Имя" 
+        email: "E-mail"
+        password: "Пароль"
+        password_confirmation: "Подтверждение"
+        user_type: "Тип пользователя"
+    submit:
+      user:
+        create: "Создать пользователя"
   activerecord:
     models:
       order: "Заказ"
@@ -22,6 +31,9 @@ en:
         client: "Клиент"
         take_time: "Дата выдачи"
         planed_return_time: "Планируемая дата возврата"
+  error_messages:
+    errors_in_form: "Форма содержит"
+    error: "ошибка"
   order:
     messages:
       are_u_sure: "Вы уверены?"
@@ -66,5 +78,5 @@ en:
     titles:
       create: "Добавление пользователя"
       show: "Информация о пользователе"
-    header:
+    headers:
       create: "Создание пользователя"

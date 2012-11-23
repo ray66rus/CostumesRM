@@ -1,6 +1,6 @@
 <%= form_for @client, :url => link do |f| %>
 
-  <%= render :partial => 'common/errors', :locals => { :object => @client, :object_name => 'клиента' } %>
+  <%= render :partial => 'shared/errors', :locals => { :object => @client, :object_name => 'клиента' } %>
 
   <div class="field">
     <%= f.label 'Название' %><br />

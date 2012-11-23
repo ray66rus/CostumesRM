@@ -1,6 +1,6 @@
 <%= form_for @order, :url => link do |f| %>
 
-  <%= render :partial => 'common/errors', :locals => { :object => @order, :object_name => Order.model_name.human.downcase } %>
+  <%= render :partial => 'shared/errors', :locals => { :object => @order, :object_name => Order.model_name.human.downcase } %>
 
   <div class="client">
     <%= f.label :client %><br />
