@@ -56,3 +56,10 @@ en:
       return_time_is_too_early: "раньше, чем дата выдачи"
       no_costumes: "не добавлены"
       no_client: "не определен"
+  user:
+    constants:
+      user_types:
+        admin: "Администратор"
+        guest: "Гость"
+        user: "Пользователь"
+        poweruser: "Продвинутый пользователь"
