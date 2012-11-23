@@ -33,4 +33,6 @@ CostumesRM::Application.routes.draw do
   delete 'orders/:id' => 'orders#delete', :as => :delete_order
   post 'orders/:id/set_activity_state' => 'orders#set_activity_state', :as => :set_order_activity_state
 
+  resources :users
+  match '/signup', to: 'users#new'
 end
