@@ -22,9 +22,9 @@ class Part < ActiveRecord::Base
   before_destroy :delete_associated_costume
   after_destroy :delete_associated_pictures
   
-  def does_belong_to_assigned_costume_by_dates(dates)
+  def belongs_to_assigned_costume_by_dates?(dates)
     self.costumes.each do |costume|
-      if costume.does_belong_to_active_order_by_dates(dates)
+      if costume.belongs_to_active_order_by_dates?(dates)
         return true
       end
     end

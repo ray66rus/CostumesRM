@@ -30,25 +30,25 @@ class Costume < ActiveRecord::Base
   before_validation :validate_associated_pictures
   after_destroy :delete_associated_pictures
 
-  def can_be_added_to_order(order)
+  def can_be_added_to_order?(order)
     if self.availability == "n"
       return false
     end
     dates = { :begin => order.take_time,
             :end => order.real_return_time.nil? ? order.planed_return_time : order.real_return_time
     };
-    if self.does_belong_to_active_order_by_dates(dates)
+    if self.belongs_to_active_order_by_dates?(dates)
       return false
     end
     self.parts.each do |part|
-      if part.does_belong_to_assigned_costume_by_dates(dates)
+      if part.belongs_to_assigned_costume_by_dates?(dates)
         return false
       end
     end
     return true
   end
 
-  def does_belong_to_active_order_by_dates(dates)
+  def belongs_to_active_order_by_dates?(dates)
     active_orders = self.orders.where({:activity_status => "y"});
     active_orders.each do |order|
       take_time = order.take_time
