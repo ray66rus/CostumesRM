@@ -89,3 +89,8 @@ ru:
       create: "Создание пользователя"
     messages:
       welcome: "Аккаунт успешно создан"
+  sessions:
+    titles:
+      signin: "Вход в систему"
+    headers:
+      signin: "Вход в систему"
