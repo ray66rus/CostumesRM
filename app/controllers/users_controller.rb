@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      flash[:success] = I18n.t('user.messages.welcome')
+      redirect_to @user
     else
       render 'new'
     end
