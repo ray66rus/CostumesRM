@@ -1,0 +1,16 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      <%= t('error_messages.errors_in_form') %>
+      <%= @user.errors.count %>
+      <%= Russian::pluralize(@user.errors.count, t('error_messages.one_error'),
+                             t('error_messages.two_errors'),
+                             t('error_messages.many_errors')) %>.
+    </div>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li>* <%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

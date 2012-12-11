@@ -1,7 +1,4 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
-en:
+ru:
   helpers:
     label:
       order:
@@ -14,10 +11,10 @@ en:
         planed_return_time: "Дата возврата (планируемая):"
         real_return_time: "Дата возврата (фактическая):"
       user:
-        name: "Имя" 
-        email: "E-mail"
-        password: "Пароль"
-        password_confirmation: "Подтверждение"
+        name: "Имя пользователя:" 
+        email: "E-mail пользователя"
+        password: "Пароль пользователя"
+        password_confirmation: "Подтверждение пароля"
         user_type: "Тип пользователя"
     submit:
       user:
@@ -25,15 +22,25 @@ en:
   activerecord:
     models:
       order: "Заказ"
+      user: "Пользователь"
     attributes:
       order:
         costumes: "Костюмы"
         client: "Клиент"
         take_time: "Дата выдачи"
         planed_return_time: "Планируемая дата возврата"
+      user:
+        name: "Имя пользователя"
+        email: "E-mail пользователя"
+        password_digest: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        password: "Пароль"
+        user_type: "Тип пользователя"
   error_messages:
     errors_in_form: "Форма содержит"
-    error: "ошибка"
+    one_error: "ошибку"
+    two_errors: "ошибки"
+    many_errors: "ошибок"
   order:
     messages:
       are_u_sure: "Вы уверены?"

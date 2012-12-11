@@ -4,6 +4,7 @@ gem 'rails', '3.2.8'
 gem 'paperclip', '~> 3.1'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'bootstrap-sass', '2.1'
+gem 'russian', '~> 0.6.0'
 
 group :development, :test  do
   gem 'sqlite3', '1.3.5'
