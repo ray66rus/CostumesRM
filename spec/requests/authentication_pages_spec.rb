@@ -1,0 +1,44 @@
+# encoding: utf-8
+
+require 'spec_helper'
+
+describe "Authentication" do
+  
+  subject { page }
+  
+  describe "signin page" do
+    before { visit signin_path }
+    
+    it { should have_selector('h1', text: I18n.t('sessions.headers.signin')) }
+    it { should have_selector('title', text: I18n.t('sessions.titles.signin')) }
+  end
+
+  describe "signin" do
+    before { visit signin_path }
+    
+    describe "with invalid information" do
+      before { click_button I18n.t('helpers.submit.session.create') }
+
+      it { should have_selector('title', text: I18n.t('sessions.titles.signin')) }
+      it { should have_selector("div.alert.alert-error", text: I18n.t('sessions.messages.invalid_signin'))}
+      
+      describe "after visiting another page" do
+        before { visit signup_path }
+        it { should_not have_selector('div.alert.alert-error') }
+      end
+    end
+    
+    describe "with valid information" do
+      let(:user) { FactoryGirl.create(:user) }
+      before { sign_in user }
+      
+      it { should have_selector('title', text: full_title(I18n.t('user.titles.show'))) }
+      
+      describe "followed by signout" do
+        before { visit signout_path }
+        it { should have_selector('input[type="submit"]') }
+      end
+    end
+  end
+
+end

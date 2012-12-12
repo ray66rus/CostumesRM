@@ -11,14 +11,19 @@ ru:
         planed_return_time: "Дата возврата (планируемая):"
         real_return_time: "Дата возврата (фактическая):"
       user:
-        name: "Имя пользователя:" 
+        name: "Имя пользователя" 
         email: "E-mail пользователя"
         password: "Пароль пользователя"
         password_confirmation: "Подтверждение пароля"
         user_type: "Тип пользователя"
+      session:
+        email: "E-mail"
+        password: "Пароль"
     submit:
       user:
         create: "Создать пользователя"
+      session:
+        create: "Вход"
   activerecord:
     models:
       order: "Заказ"
@@ -94,3 +99,6 @@ ru:
       signin: "Вход в систему"
     headers:
       signin: "Вход в систему"
+    messages:
+      invalid_signin: "Ошибка входа в систему: неправильный e-mail или пароль"
+
