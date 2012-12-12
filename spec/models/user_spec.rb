@@ -10,8 +10,8 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  password_digest :string(255)
+#  remember_token  :string(255)
 #
-
 
 require 'spec_helper'
 
@@ -29,6 +29,7 @@ describe "User" do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:user_type) }
+  it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:orders) }
   
@@ -109,5 +110,10 @@ describe "User" do
   describe "with invalid user type" do
     before { @user.user_type = "wrongtype" }
     it { should_not be_valid }
+  end
+  
+  describe "remeber token" do
+    before { @user.save }
+    its(:remember_token) { should_not be_blank }
   end
 end

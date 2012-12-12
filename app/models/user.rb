@@ -9,6 +9,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  password_digest :string(255)
+#  remember_token  :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -23,11 +24,18 @@ class User < ActiveRecord::Base
       uniqueness: { case_sensitive: false }
   validates :user_type, presence: true, format: { with: /\Aadmin|guest|user|poweruser\z/ }
   before_save { |user| user.email = email.downcase }
+  before_save :create_remember_token
 
   TYPE_TO_TYPE_NAME = { "admin" => I18n.t("user.constants.user_types.admin"),
     "guest" => I18n.t("user.constants.user_types.guest"),
     "user" => I18n.t("user.constants.user_types.user"),
     "poweruser" => I18n.t("user.constants.user_types.poweruser")
   }
+  
+  private
+  
+    def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+    end
   
 end
