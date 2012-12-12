@@ -26,10 +26,10 @@ class User < ActiveRecord::Base
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
-  TYPE_TO_TYPE_NAME = { "admin" => I18n.t("user.constants.user_types.admin"),
-    "guest" => I18n.t("user.constants.user_types.guest"),
+  TYPE_TO_TYPE_NAME = { "guest" => I18n.t("user.constants.user_types.guest"),
     "user" => I18n.t("user.constants.user_types.user"),
-    "poweruser" => I18n.t("user.constants.user_types.poweruser")
+    "poweruser" => I18n.t("user.constants.user_types.poweruser"),
+    "admin" => I18n.t("user.constants.user_types.admin")
   }
   
   private
