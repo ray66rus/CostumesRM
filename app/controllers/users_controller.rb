@@ -17,4 +17,19 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:success] = I18n.t('user.messages.profile_updated')
+      sign_in @user
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
 end
