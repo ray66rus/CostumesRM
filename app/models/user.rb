@@ -33,6 +33,18 @@ class User < ActiveRecord::Base
     "admin" => I18n.t("user.constants.user_types.admin")
   }
   
+  def admin?
+    self.user_type == 'admin'
+  end
+  
+  def user?
+    self.user_type == 'user'
+  end
+  
+  def power_user?
+    self.user_type == 'poweruser'
+  end
+  
   private
   
     def create_remember_token
