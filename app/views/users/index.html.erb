@@ -1,11 +1,10 @@
 <% provide(:title, t('user.titles.list')) %>
 <h1><%= t('user.headers.list') %></h1>
 
+<%= will_paginate %>
+
 <ul class="users">
-  <% @users.each do |user| %>
-  <li>
-    <%= link_to user.name, user %>
-    <%= User::TYPE_TO_TYPE_NAME[user.user_type] %>
-  </li>
-  <% end %>
+  <%= render @users %>
 </ul>
+
+<%= will_paginate %>

@@ -100,6 +100,11 @@ ru:
     messages:
       welcome: "Аккаунт успешно создан"
       profile_updated: "Данные пользователя обновлены"
+      user_deleted: "Пользователь удален"
+    buttons:
+      delete: "Удалить"
+    dialog_messages:
+      delete_confirmation: "Вы уверены?"
   sessions:
     titles:
       signin: "Вход в систему"

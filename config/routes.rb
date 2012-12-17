@@ -40,6 +40,7 @@ CostumesRM::Application.routes.draw do
   
   resources :sessions, only: [:new, :create, :destroy]
   match '/signin', to: 'sessions#new'
+  match '/', to: 'sessions#new', :as => :root
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/signout', to: 'sessions#destroy', via: :get
 end
