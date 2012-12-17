@@ -29,8 +29,9 @@ class UsersController < ApplicationController
   def update
     user_type = params[:user].delete :user_type
     @user = User.find(params[:id])
+    @user.attributes = params[:user]
     @user.user_type = user_type if signed_in? && current_user.admin?
-    if @user.update_attributes(params[:user])
+    if @user.save
       flash[:success] = I18n.t('user.messages.profile_updated')
       sign_in @user
       redirect_to @user
@@ -52,6 +53,6 @@ class UsersController < ApplicationController
   private
   
     def admin_user
-      redirect_to(root_path) unless current_user.admin?
+      redirect_to(signin_path) unless current_user.admin?
     end
 end

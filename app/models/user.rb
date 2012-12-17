@@ -14,7 +14,7 @@
 
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
-  attr_readonly :user_type
+  attr_protected :user_type
   has_many :orders
   
   has_secure_password
