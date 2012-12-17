@@ -36,9 +36,11 @@ CostumesRM::Application.routes.draw do
   resources :users
   match '/signup', to: 'users#new'
   match '/create_user', to: 'users#create'
+  match '/user/:id', to: 'users#update', :as => :update_user
   
   resources :sessions, only: [:new, :create, :destroy]
-  match '/signin', to: 'sessions#new', :as => :root
+  match '/signin', to: 'sessions#new'
+  match '/', to: 'sessions#new', :as => :root
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/signout', to: 'sessions#destroy', via: :get
 end

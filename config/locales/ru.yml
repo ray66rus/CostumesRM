@@ -22,6 +22,7 @@ ru:
     submit:
       user:
         create: "Создать пользователя"
+        update: "Сохранить данные"
       session:
         create: "Вход"
   activerecord:
@@ -90,10 +91,20 @@ ru:
     titles:
       create: "Добавление пользователя"
       show: "Информация о пользователе"
+      edit: "Обновить данные"
+      list: "Список пользователей"
     headers:
       create: "Создание пользователя"
+      edit: "Обновление данных о пользователе"
+      list: "Список пользователей"
     messages:
       welcome: "Аккаунт успешно создан"
+      profile_updated: "Данные пользователя обновлены"
+      user_deleted: "Пользователь удален"
+    buttons:
+      delete: "Удалить"
+    dialog_messages:
+      delete_confirmation: "Вы уверены?"
   sessions:
     titles:
       signin: "Вход в систему"

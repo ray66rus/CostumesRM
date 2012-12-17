@@ -1,9 +1,13 @@
 FactoryGirl.define do
   factory :user do
-    name      "John Smith"
-    email     "johnsmith@foo.bar"
+    sequence(:name)      { |n| "John Smith #{n}" }
+    sequence(:email)     { |n| "johnsmith_#{n}@foo.bar" }
     password  "foobar"
     password_confirmation "foobar"
-    user_type "admin"
+    sequence(:user_type) { |n| User::TYPE_TO_TYPE_NAME.keys[n % User::TYPE_TO_TYPE_NAME.length] }
+  
+    factory :admin do
+      user_type 'admin'
+    end
   end
 end
