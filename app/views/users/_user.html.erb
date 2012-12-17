@@ -1,0 +1,7 @@
+<li>
+  <%= link_to user.name, user %>
+  <%= User::TYPE_TO_TYPE_NAME[user.user_type] %>
+  |
+  <%= link_to t('user.buttons.delete'), user, method: :delete,
+    data: { confirm: t('user.dialog_messages.delete_confirmation') } %>
+</li>

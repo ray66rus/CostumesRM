@@ -22,12 +22,11 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
       uniqueness: { case_sensitive: false }
-  validates :user_type, presence: true, format: { with: /\Aadmin|guest|user|poweruser\z/ }
+  validates :user_type, presence: true, format: { with: /\Aadmin|user|poweruser\z/ }
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
-  TYPE_TO_TYPE_NAME = { "guest" => I18n.t("user.constants.user_types.guest"),
-    "user" => I18n.t("user.constants.user_types.user"),
+  TYPE_TO_TYPE_NAME = { "user" => I18n.t("user.constants.user_types.user"),
     "poweruser" => I18n.t("user.constants.user_types.poweruser"),
     "admin" => I18n.t("user.constants.user_types.admin")
   }

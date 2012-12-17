@@ -85,7 +85,6 @@ ru:
     constants:
       user_types:
         admin: "Администратор"
-        guest: "Гость"
         user: "Пользователь"
         poweruser: "Продвинутый пользователь"
     titles:
