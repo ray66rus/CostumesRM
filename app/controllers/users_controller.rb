@@ -10,7 +10,9 @@ class UsersController < ApplicationController
   end
   
   def create
+    user_type = params[:user].delete :user_type
     @user = User.new(params[:user])
+    @user.user_type = user_type if signed_in? && current_user.user_type == 'admin'
     if @user.save
       sign_in @user
       flash[:success] = I18n.t('user.messages.welcome')
@@ -25,7 +27,9 @@ class UsersController < ApplicationController
   end
   
   def update
+    user_type = params[:user].delete :user_type
     @user = User.find(params[:id])
+    @user.user_type = user_type if signed_in? && current_user.user_type == 'admin'
     if @user.update_attributes(params[:user])
       flash[:success] = I18n.t('user.messages.profile_updated')
       sign_in @user

@@ -13,7 +13,8 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation, :user_type
+  attr_accessible :email, :name, :password, :password_confirmation
+  attr_readonly :user_type
   has_many :orders
   
   has_secure_password
@@ -25,6 +26,7 @@ class User < ActiveRecord::Base
   validates :user_type, presence: true, format: { with: /\Aadmin|user|poweruser\z/ }
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
+  after_initialize { |user| user.user_type ||= 'user' }
 
   TYPE_TO_TYPE_NAME = { "user" => I18n.t("user.constants.user_types.user"),
     "poweruser" => I18n.t("user.constants.user_types.poweruser"),
@@ -36,5 +38,4 @@ class User < ActiveRecord::Base
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
     end
-  
 end
