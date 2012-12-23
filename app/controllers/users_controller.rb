@@ -1,18 +1,17 @@
 class UsersController < ApplicationController
-  before_filter :admin_user,  only: :destroy
+  prepend_before_filter :find_users_with_pagination, :only => :index
+  skip_load_resource :only => [:create, :update, :destroy]
   
   def show
-    @user = User.find(params[:id])
- end
+  end
 
   def new
-    @user = User.new
   end
   
   def create
     user_type = params[:user].delete :user_type
     @user = User.new(params[:user])
-    @user.user_type = user_type if signed_in? && current_user.admin?
+    @user.user_type = user_type if current_user.admin?
     if @user.save
       sign_in @user
       flash[:success] = I18n.t('user.messages.welcome')
@@ -23,14 +22,13 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
   end
   
   def update
     user_type = params[:user].delete :user_type
     @user = User.find(params[:id])
     @user.attributes = params[:user]
-    @user.user_type = user_type if signed_in? && current_user.admin?
+    @user.user_type = user_type if current_user.admin?
     if @user.save
       flash[:success] = I18n.t('user.messages.profile_updated')
       sign_in @user
@@ -41,6 +39,9 @@ class UsersController < ApplicationController
   end
   
   def index
+  end
+  
+  def find_users_with_pagination
     @users = User.paginate(page: params[:page])
   end
   
@@ -49,10 +50,4 @@ class UsersController < ApplicationController
     flash[:success] = I18n.t('user.messages.user_deleted')
     redirect_to users_url
   end
-  
-  private
-  
-    def admin_user
-      redirect_to(signin_path) unless current_user.admin?
-    end
 end

@@ -14,8 +14,11 @@
       <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation %>
 
-      <%= f.label :user_type %>
-      <%= f.select :user_type, User::TYPE_TO_TYPE_NAME.invert %>
+      <% if can? :change_user_type, @user %>
+        <%= f.label :user_type %>
+        <%= f.select :user_type, User::TYPE_TO_TYPE_NAME.invert %>
+      <% end %>
+      
       <br /><br />
       <%= f.submit nil, class: "btn btn-large btn-primary" %>
     <% end %>
