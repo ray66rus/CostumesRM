@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class PartsController < ApplicationController
+  skip_load_and_authorize_resource
+  
   def new
     @part = Part.new
   end

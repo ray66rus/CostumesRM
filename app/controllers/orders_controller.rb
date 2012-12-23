@@ -1,7 +1,8 @@
 # encoding: utf-8
 
 class OrdersController < ApplicationController
-
+  skip_load_and_authorize_resource
+  
   def new
     @order = Order.new
   end

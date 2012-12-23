@@ -6,6 +6,9 @@ describe "ClientPages" do
 
   subject { page }
 
+  let(:user) { FactoryGirl.create(:poweruser) }
+  before { sign_in user }
+
   describe "add client page" do
     before { visit add_client_path }
 

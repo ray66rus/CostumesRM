@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class CostumesController < ApplicationController
+  skip_load_and_authorize_resource
+  
   def new
     @costume = Costume.new
   end
