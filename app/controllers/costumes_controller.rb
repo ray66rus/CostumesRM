@@ -1,14 +1,10 @@
 # encoding: utf-8
 
 class CostumesController < ApplicationController
-  skip_load_and_authorize_resource
-  
   def new
-    @costume = Costume.new
   end
   
   def create
-    @costume = Costume.new(params[:costume]);
     @costume.costume_type = 'complex'
     
     respond_to do |format|
@@ -47,9 +43,6 @@ class CostumesController < ApplicationController
   end
   
   def delete
-    @costume = Costume.find(params[:id])
-
-
     if @costume.costume_type == 'simple'
       notice = 'Невозможно удалить простой костюм'
     elsif @costume.destroy
@@ -64,15 +57,12 @@ class CostumesController < ApplicationController
   end
   
   def edit
-    @costume = Costume.find(params[:id])
-    
     if @costume.costume_type == 'simple'
       redirect_to action: "index", notice: 'Невозможно редактировать простой костюм'
     end
   end
   
   def update
-    @costume = Costume.find(params[:id])
     respond_to do |format|
       if @costume.update_attributes(params[:costume])
         if !params[:pictures].nil?
@@ -106,5 +96,4 @@ class CostumesController < ApplicationController
       costume.parts.delete(Part.find(part_id))
     end
   end
-
 end

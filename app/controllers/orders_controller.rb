@@ -1,15 +1,10 @@
 # encoding: utf-8
 
 class OrdersController < ApplicationController
-  skip_load_and_authorize_resource
-  
   def new
-    @order = Order.new
   end
 
   def create
-    @order = Order.new(params[:order])
-    
     @order.client = Client.find(params[:order_client])
     if !params[:order_costumes].nil?
       params[:order_costumes].each do |costume_id|
@@ -25,11 +20,9 @@ class OrdersController < ApplicationController
   end
   
   def index
-    @orders = Order.all
   end
   
   def delete
-    @order = Order.find(params[:id])
     if @order.destroy
       redirect_to action: "index", notice: t("order.messages.order_deleted")
     else
@@ -38,12 +31,9 @@ class OrdersController < ApplicationController
   end
   
   def edit
-    @order = Order.find(params[:id])
   end
   
   def update
-    @order = Order.find(params[:id])
-    
     @order.client = Client.find(params[:order_client])
     @order.costumes.clear
     if !params[:order_costumes].nil?

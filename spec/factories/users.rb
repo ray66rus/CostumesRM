@@ -9,6 +9,10 @@ FactoryGirl.define do
     factory :admin do
       user_type 'admin'
     end
+  
+    factory :simpleuser do
+      user_type 'user'
+    end
     
     factory :poweruser do
       user_type 'poweruser'

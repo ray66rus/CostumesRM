@@ -6,6 +6,9 @@ describe "CostumesPages" do
 
   subject { page }
 
+  let(:user) { FactoryGirl.create(:poweruser) }
+  before { sign_in user }
+
   describe "add costume page" do
     before { visit add_costume_path }
 

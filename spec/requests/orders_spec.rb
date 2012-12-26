@@ -5,6 +5,9 @@ require 'spec_helper'
 describe "OrdersPages" do
 
   subject { page }
+  
+  let(:user) { FactoryGirl.create(:poweruser) }
+  before { sign_in user }
 
   describe "add order page" do
     before { visit add_order_path }

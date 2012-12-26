@@ -5,6 +5,9 @@ require 'spec_helper'
 describe "PartsPages" do
 
   subject { page }
+  
+  let(:user) { FactoryGirl.create(:poweruser) }
+  before { sign_in user }
 
   describe "add part page" do
     before { visit add_part_path }

@@ -1,15 +1,10 @@
 # encoding: utf-8
 
 class PartsController < ApplicationController
-  skip_load_and_authorize_resource
-  
   def new
-    @part = Part.new
   end
   
   def create
-    @part = Part.new(params[:part]);
-    
     respond_to do |format|
       if @part.save
         if !params[:pictures].nil?
@@ -38,12 +33,9 @@ class PartsController < ApplicationController
   end
   
   def index
-    @parts = Part.all
   end
   
   def delete
-    @part = Part.find(params[:id])
-
     respond_to do |format|
       if @part.destroy
         format.html { redirect_to action: "index", notice: 'Часть костюма удалена' }
@@ -54,12 +46,9 @@ class PartsController < ApplicationController
   end
   
   def edit
-    @part = Part.find(params[:id])
   end
 
   def update
-    @part = Part.find(params[:id])
-
     respond_to do |format|
       if @part.update_attributes(params[:part])
         if !params[:pictures].nil?
@@ -81,5 +70,4 @@ class PartsController < ApplicationController
       end
     end
   end
-
 end
