@@ -33,6 +33,7 @@ class PartsController < ApplicationController
   end
   
   def index
+    render :layout => false
   end
   
   def delete

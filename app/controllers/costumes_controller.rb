@@ -39,7 +39,7 @@ class CostumesController < ApplicationController
   end
   
   def index
-    @costumes = Costume.all
+    render :layout => false
   end
   
   def delete

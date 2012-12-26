@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Komodo Project File - DO NOT EDIT -->
+<project id="db9d83b5-cdd7-46e5-91b5-1e135cf00dde" kpf_version="5" name="CostumesRM.komodoproject">
+<livefolder id="05531f1e-8bbf-49a2-bb3d-017680fe3075" idref="db9d83b5-cdd7-46e5-91b5-1e135cf00dde" name="app" url="app">
+</livefolder>
+<livefolder id="67d3a6f0-49d6-4d15-adb3-13cd85bd6ff2" idref="db9d83b5-cdd7-46e5-91b5-1e135cf00dde" name="spec" url="spec">
+</livefolder>
+<livefolder id="921e81de-5eb1-4cd9-ab36-0fb96ebef087" idref="db9d83b5-cdd7-46e5-91b5-1e135cf00dde" name="config" url="config">
+</livefolder>
+</project>

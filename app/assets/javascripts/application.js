@@ -14,7 +14,9 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery.ui.datepicker-ru
+//= require jquery.bettertabs.min
 //= require_tree .
+//= require jquery.tools.min
 
 (function(window, undefined) {
 "use strict"

@@ -39,6 +39,7 @@ class UsersController < ApplicationController
   end
   
   def index
+    render :layout => false
   end
   
   def find_users_with_pagination

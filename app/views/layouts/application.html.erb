@@ -5,6 +5,13 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <script>
+    var tabsIndex = { 'users': 0, 'parts': 1, 'costumes': 2 }
+    $(function() {
+      console.log("here")
+      $("ul.css-tabs").tabs("div.css-panes > div", {effect: 'ajax', history: true})
+    });
+  </script>
 </head>
 <body>
 
@@ -12,7 +19,16 @@
   <%= content_tag(:div, value, class: "alert alert-#{key}") %>
 <% end %>
 
-<%= yield %>
+<% if params[:controller] == 'sessions' %>
+  <%= yield %>
+<% else %>
+    <ul class="css-tabs">
+      <li><a href="/users">Users</a></li>
+      <li><a href="/parts">Parts</a></li>
+      <li><a href="/costumes">Costumes</a></li>
+    </ul>
+    <div class="css-panes"><div style="display:block"></div></div>
+<% end %>  
 <%= debug(params) if Rails.env.development? %>
 
 </body>
