@@ -6,6 +6,7 @@ namespace :db do
                  password: "foobar",
                  password_confirmation: "foobar")
     user_type = 'admin'
+    user.save
     99.times do |n|
       name = Faker::Name.name
       email = "example-#{n+1}@railstutorial.org"
@@ -16,6 +17,7 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
       user.user_type = user_type
+      user.save
     end
   end
 end
