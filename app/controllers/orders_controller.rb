@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
 
   def create
     @order.client = Client.find(params[:order_client])
+    @order.user_id = current_user.id
     if !params[:order_costumes].nil?
       params[:order_costumes].each do |costume_id|
         @order.costumes << Costume.find(costume_id)
