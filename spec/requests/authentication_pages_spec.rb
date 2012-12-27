@@ -45,6 +45,21 @@ describe "Authentication" do
     describe "for non-signed-in-user" do
       let(:user) { FactoryGirl.create(:user) }
       
+      describe "when attempting to visit a protected page" do
+        before do
+          visit edit_user_path(user)
+          fill_in I18n.t("helpers.label.session.email"),    with: user.email
+          fill_in I18n.t("helpers.label.session.password"), with: user.password
+          click_button I18n.t('helpers.submit.session.create')
+        end
+        
+        describe "after signin in" do
+          it "should render the desired protected page" do
+            page.should have_selector('title', text: full_title(I18n.t('user.titles.edit')))
+          end
+        end
+      end
+      
       describe "in the Users controller" do
         before { visit edit_user_path(user) }
         it { should have_selector('title', text: I18n.t('sessions.titles.signin')) }
