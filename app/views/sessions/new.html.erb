@@ -1,8 +1,8 @@
-<% provide(:title, t('sessions.titles.signin')) %>
+<% provide(:title, t('session.titles.signin')) %>
 
 <div class="row">
   <div class="span6 offset3">
-    <%= content_tag(:h1, t('sessions.headers.signin')) %>
+    <%= content_tag(:h1, t('session.headers.signin')) %>
     <%= form_for(:session, url: sessions_path) do |f| %>
       <%= f.label :email %>
       <%= f.text_field :email %>

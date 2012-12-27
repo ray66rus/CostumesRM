@@ -27,6 +27,7 @@ ru:
         create: "Вход"
   activerecord:
     models:
+      client: "Клиент"
       order: "Заказ"
       user: "Пользователь"
     attributes:
@@ -104,11 +105,13 @@ ru:
       delete: "Удалить"
     dialog_messages:
       delete_confirmation: "Вы уверены?"
-  sessions:
+  session:
     titles:
       signin: "Вход в систему"
     headers:
       signin: "Вход в систему"
     messages:
       invalid_signin: "Ошибка входа в систему: неправильный e-mail или пароль"
-
+  client:
+    constants:
+      tab_header: "Клиенты"

@@ -9,8 +9,8 @@ describe "Authentication" do
   describe "signin page" do
     before { visit signin_path }
     
-    it { should have_selector('h1', text: I18n.t('sessions.headers.signin')) }
-    it { should have_selector('title', text: I18n.t('sessions.titles.signin')) }
+    it { should have_selector('h1', text: I18n.t('session.headers.signin')) }
+    it { should have_selector('title', text: I18n.t('session.titles.signin')) }
   end
 
   describe "signin" do
@@ -19,8 +19,8 @@ describe "Authentication" do
     describe "with invalid information" do
       before { click_button I18n.t('helpers.submit.session.create') }
 
-      it { should have_selector('title', text: I18n.t('sessions.titles.signin')) }
-      it { should have_selector("div.alert.alert-error", text: I18n.t('sessions.messages.invalid_signin'))}
+      it { should have_selector('title', text: I18n.t('session.titles.signin')) }
+      it { should have_selector("div.alert.alert-error", text: I18n.t('session.messages.invalid_signin'))}
       
       describe "after visiting another page" do
         before { visit signup_path }
@@ -62,7 +62,7 @@ describe "Authentication" do
       
       describe "in the Users controller" do
         before { visit edit_user_path(user) }
-        it { should have_selector('title', text: I18n.t('sessions.titles.signin')) }
+        it { should have_selector('title', text: I18n.t('session.titles.signin')) }
       end
       
       describe "submitting the update action" do

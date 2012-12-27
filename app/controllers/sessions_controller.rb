@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_back_or user
     else
-      flash.now[:error] = I18n.t('sessions.messages.invalid_signin')
+      flash.now[:error] = I18n.t('session.messages.invalid_signin')
       render 'new'
     end
   end
