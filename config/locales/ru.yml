@@ -49,6 +49,8 @@ ru:
     two_errors: "ошибки"
     many_errors: "ошибок"
   order:
+    constants:
+      tab_header: "Заказы"
     messages:
       are_u_sure: "Вы уверены?"
       order_not_found: "Заказ не найден"
@@ -88,6 +90,7 @@ ru:
         admin: "Администратор"
         user: "Пользователь"
         poweruser: "Продвинутый пользователь"
+      tab_header: "Пользователи"
     titles:
       create: "Добавление пользователя"
       show: "Информация о пользователе"
@@ -115,3 +118,9 @@ ru:
   client:
     constants:
       tab_header: "Клиенты"
+  part:
+    constants:
+      tab_header: "Части"
+  costume:
+    constants:
+      tab_header: "Костюмы"  

@@ -4,6 +4,8 @@ require 'spec_helper'
 
 describe "User pages" do
   subject { page }
+  
+  let(:tab_header) { I18n.t('user.constants.tab_header') }
 
   describe "signup page" do
     let(:user) { FactoryGirl.create(:poweruser) }
@@ -39,6 +41,7 @@ describe "User pages" do
       end
       it { should have_selector('title', text: full_title(I18n.t('user.titles.show'))) }
       it { should have_selector('h1', text: user.name) }
+      it { should_not have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
     end
 
     describe "as another user" do
@@ -56,6 +59,8 @@ describe "User pages" do
       end
       it { should have_selector('title', text: full_title(I18n.t('user.titles.show'))) }
       it { should have_selector('h1', text: user.name) }
+      it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
+      it { should_not have_selector('li.cmgr-active a', href: users_path) }
     end
   end
   
@@ -66,6 +71,9 @@ describe "User pages" do
       sign_in admin
       visit signup_path
     end
+
+    it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
+    it { should_not have_selector('li.cmgr-active a', href: users_path) }
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -97,6 +105,7 @@ describe "User pages" do
     describe "page for user" do
       it { should have_selector('h1', text: I18n.t('user.headers.edit')) }
       it { should have_selector('title', text: full_title(I18n.t('user.titles.edit'))) }
+      it { should_not have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
       it { should_not have_selector('select') }
     end
 
@@ -131,19 +140,24 @@ describe "User pages" do
         before do
           sign_in admin
           visit edit_user_path(user)
+        end
+        
+        it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
+        it { should_not have_selector('li.cmgr-active a', href: users_path) }
+          
+        specify "should be able to change user type" do
           fill_in I18n.t("helpers.label.user.password"),                with: user.password
           fill_in I18n.t("helpers.label.user.password_confirmation"),   with: user.password
           select I18n.t("user.constants.user_types.user"), :from => I18n.t("helpers.label.user.user_type")
-          click_button I18n.t("helpers.submit.user.update")
+          click_button I18n.t("helpers.submit.user.update")    
+          user.reload.user_type.should == 'user'
         end
-      
-        specify { user.reload.user_type.should == 'user' }
       end
     end
   end
   
   describe "index" do
-    let(:user) { FactoryGirl.create(:poweruser) }
+    let(:user) { FactoryGirl.create(:admin) }
 
     before(:each) do
       sign_in user
@@ -152,6 +166,8 @@ describe "User pages" do
     
     it { should have_selector('title', text: full_title(I18n.t('user.titles.list'))) }
     it { should have_selector('h1', text: I18n.t('user.headers.list')) }
+    it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
+    it { should_not have_selector('li.cmgr-active a', href: users_path) }
 
     describe "pagination" do  
       before(:all) { 30.times { FactoryGirl.create(:user) } }
