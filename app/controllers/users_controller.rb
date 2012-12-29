@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  prepend_before_filter :find_users_with_pagination, :only => :index
-  skip_load_resource :only => [:create, :update, :destroy]
+  skip_load_resource :only => [:create, :update, :destroy, :index]
   
   def show
   end
@@ -39,10 +38,8 @@ class UsersController < ApplicationController
   end
   
   def index
-  end
-  
-  def find_users_with_pagination
     @users = User.paginate(page: params[:page])
+    authorize! :view_users_list, User
   end
   
   def destroy

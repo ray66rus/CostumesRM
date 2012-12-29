@@ -157,27 +157,39 @@ describe "User pages" do
   end
   
   describe "index" do
-    let(:user) { FactoryGirl.create(:admin) }
-
-    before(:each) do
-      sign_in user
-      visit users_path
+    describe "as user" do
+      let(:user) { FactoryGirl.create(:poweruser) }
+      
+      before do
+        sign_in user
+        visit users_path
+      end
+      it { should_not have_selector('title', text: full_title(I18n.t('user.titles.list'))) }
     end
     
-    it { should have_selector('title', text: full_title(I18n.t('user.titles.list'))) }
-    it { should have_selector('h1', text: I18n.t('user.headers.list')) }
-    it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
-    it { should_not have_selector('li.cmgr-active a', href: users_path) }
+    describe "as admin" do
+      let(:user) { FactoryGirl.create(:admin) }
 
-    describe "pagination" do  
-      before(:all) { 30.times { FactoryGirl.create(:user) } }
-      after(:all) { User.delete_all }
+      before(:each) do
+        sign_in user
+        visit users_path
+      end
+    
+      it { should have_selector('title', text: full_title(I18n.t('user.titles.list'))) }
+      it { should have_selector('h1', text: I18n.t('user.headers.list')) }
+      it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
+      it { should_not have_selector('li.cmgr-active a', href: users_path) }
 
-      it { should have_selector('div.pagination') }
+      describe "pagination" do  
+        before(:all) { 30.times { FactoryGirl.create(:user) } }
+        after(:all) { User.delete_all }
 
-      it "should list each user" do
-        User.paginate(page: 1).each do |user|
-          page.should have_selector('li', text: user.name)
+        it { should have_selector('div.pagination') }
+
+        it "should list each user" do
+          User.paginate(page: 1).each do |user|
+            page.should have_selector('li', text: user.name)
+          end
         end
       end
     end
@@ -207,9 +219,6 @@ describe "User pages" do
         sign_in non_admin
         visit users_path
       end
-
-      let(:delete_button) { I18n.t('user.buttons.delete') }     
-      it { should_not have_link(delete_button, href: user_path(User.first)) }
 
       describe "submitting a DELETE request to the Users#destroy action" do
         before { delete user_path(user) }
