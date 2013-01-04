@@ -1,2 +1,38 @@
-<h1>THIS IS TABBED VIEW</h1>
-<div class='cmgr-tab-content'><%= yield %></div>
+<ul class="cmgr-tab-header">
+  <% if can? :view_users_list, User %>
+    <% if in_users_controller? %>
+      <li class="cmgr-tab cmgr-active"><%= t('user.constants.tab_header') %></li>
+    <% else %>
+      <li class="cmgr-tab"><%= link_to t('user.constants.tab_header'), users_path %></li>
+    <% end %>
+  <% end %>
+  <% if can? :read, Order %>
+    <% if in_orders_controller? %>
+      <li class="cmgr-tab cmgr-active"><%= t('order.constants.tab_header') %></li>
+    <% else %>
+      <li class="cmgr-tab"><%= link_to t('order.constants.tab_header'), list_orders_path %></li>
+    <% end %>
+  <% end %>
+  <% if can? :read, Client %>
+    <% if in_clients_controller? %>
+      <li class="cmgr-tab cmgr-active"><%= t('client.constants.tab_header') %></li>
+    <% else %>
+      <li class="cmgr-tab"><%= link_to t('client.constants.tab_header'), list_clients_path %></li>
+    <% end %>
+  <% end %>
+  <% if can? :read, Costume %>
+    <% if in_costumes_controller? %>
+      <li class="cmgr-tab cmgr-active"><%= t('costume.constants.tab_header') %></li>
+    <% else %>
+      <li class="cmgr-tab"><%= link_to t('costume.constants.tab_header'), list_costumes_path %></li>
+    <% end %>
+  <% end %>
+  <% if can? :read, Part %>
+      <% if in_parts_controller? %>
+      <li class="cmgr-tab cmgr-active"><%= t('part.constants.tab_header') %></li>
+    <% else %>
+      <li class="cmgr-tab"><%= link_to t('part.constants.tab_header'), list_parts_path %></li>
+    <% end %>
+  <% end %>
+</ul>
+<div class="cmgr-tab-content"><%= yield %></div>
