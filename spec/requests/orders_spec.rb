@@ -14,8 +14,8 @@ describe "OrdersPages" do
     before { visit add_order_path }
 
     it { should have_selector('title', text: full_title('Добавление заказа')) }
-    it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
-    it { should_not have_selector('li.cmgr-active a', href: list_orders_path) }
+    it { should have_selector('li.cmgr-active', text: tab_header) }
+    it { should_not have_selector('li.cmgr-active a[href="' + list_orders_path + '"]') }
     it { should have_selector('h1', text: 'Создание заказа') }
     it { should have_selector('label', text: 'Клиент') }
     it { should have_selector('label', text: 'Цена') }
@@ -31,8 +31,8 @@ describe "OrdersPages" do
     before { visit list_orders_path }
     
     it { should have_selector('title', text: full_title('Заказы')) }
-    it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
-    it { should_not have_selector('li.cmgr-active a', href: list_orders_path) }
+    it { should have_selector('li.cmgr-active', text: tab_header) }
+    it { should_not have_selector('li.cmgr-active a[href="' + list_orders_path + '"]') }
     it { should have_selector('h1', text: 'Список заказов') }
     it { should have_selector('div', text: 'Операции') }
     it { should have_selector('div', text: 'Клиент') }
@@ -49,8 +49,8 @@ describe "OrdersPages" do
     before { visit edit_order_path(order) }
     
     it { should have_selector('title', text: full_title('Изменение заказа')) }
-    it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
-    it { should_not have_selector('li.cmgr-active a', href: list_orders_path) }
+    it { should have_selector('li.cmgr-active', text: tab_header) }
+    it { should_not have_selector('li.cmgr-active a[href="' + list_orders_path + '"]') }
     it { should have_selector('h1', text: 'Изменение данных заказа') }
     it { should have_selector('label', text: 'Клиент') }
     it { should have_selector('label', text: 'Цена') }

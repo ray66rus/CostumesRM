@@ -1,0 +1,47 @@
+ul.cmgr-tabs-header {
+    margin:0 !important;
+    padding:0;
+    height:30px;
+    border-bottom:1px solid #666;
+
+    li {
+        float:left;
+        padding:0;
+        margin:0;
+        list-style-type:none;
+
+        a {
+            float:left;
+            font-size:13px;
+            display:block;
+            padding:5px 30px;
+            text-decoration:none;
+            border:1px solid #666;
+            border-bottom:0px;
+            height:18px;
+            background-color:#efefef;
+            color:#777;
+            margin-right:2px;
+            position:relative;
+            top:1px;
+            outline:0;
+            border-radius:4px 4px 0 0;
+        }
+
+        a:hover {
+            background-color:#F7F7F7;
+            color:#333;
+        }
+
+        &.cmgr-active a {
+            background-color:#ddd;
+            border-bottom:1px solid #ddd;
+            color:#000;
+            cursor:default;
+        }
+    }
+}
+
+div.cmgr-tabs-content {
+}
+

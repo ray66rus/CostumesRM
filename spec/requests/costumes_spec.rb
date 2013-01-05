@@ -13,8 +13,8 @@ describe "CostumesPages" do
     before { visit list_costumes_path }
     
     it { should have_selector('title', text: full_title('Костюмы')) }
-    it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
-    it { should_not have_selector('li.cmgr-active a', href: list_costumes_path) }
+    it { should have_selector('li.cmgr-active', text: tab_header) }
+    it { should_not have_selector('li.cmgr-active a[href="' + list_costumes_path + '"]') }
     it { should have_selector('h1', text: 'Список костюмов') }
     it { should have_selector('div', text: 'Название') }
     it { should have_selector('div', text: 'Цена') }
@@ -32,8 +32,8 @@ describe "CostumesPages" do
     end
 
     it { should have_selector('title', text: full_title('Новый костюм')) }
-    it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
-    it { should_not have_selector('li.cmgr-active a', href: list_costumes_path) }
+    it { should have_selector('li.cmgr-active', text: tab_header) }
+    it { should_not have_selector('li.cmgr-active a[href="' + list_costumes_path + '"]') }
     it { should have_selector('h1', text: 'Добавление костюма') }
     it { should have_selector('label', text: 'Название') }
     it { should have_selector('label', text: 'Цена') }
@@ -50,8 +50,8 @@ describe "CostumesPages" do
     end
     
     it { should have_selector('title', text: full_title('Изменение костюма')) }
-    it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
-    it { should_not have_selector('li.cmgr-active a', href: list_costumes_path) }
+    it { should have_selector('li.cmgr-active', text: tab_header) }
+    it { should_not have_selector('li.cmgr-active a[href="' + list_costumes_path + '"]') }
     it { should have_selector('h1', text: 'Изменение информации о костюме') }
     it { should have_selector('div', text: 'Название') }
     it { should have_selector('div', text: 'Цена') }
@@ -69,8 +69,8 @@ describe "CostumesPages" do
     end
     
     it { should_not have_selector('title', text: full_title('Изменение костюма')) }
-    it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
-    it { should_not have_selector('li.cmgr-active a', href: list_costumes_path) }
+    it { should have_selector('li.cmgr-active', text: tab_header) }
+    it { should_not have_selector('li.cmgr-active a[href="' + list_costumes_path + '"]') }
     it { should have_selector('title', text: full_title('Костюмы')) }
   end
 

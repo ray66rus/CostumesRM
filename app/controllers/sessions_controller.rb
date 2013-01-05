@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       sign_in user
-      redirect_back_or user
+      redirect_back_or list_costumes_path
     else
       flash.now[:error] = I18n.t('session.messages.invalid_signin')
       render 'new'

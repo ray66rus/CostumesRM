@@ -41,7 +41,7 @@ describe "User pages" do
       end
       it { should have_selector('title', text: full_title(I18n.t('user.titles.show'))) }
       it { should have_selector('h1', text: user.name) }
-      it { should_not have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
+      it { should_not have_selector('li.cmgr-active', text: tab_header) }
     end
 
     describe "as another user" do
@@ -59,8 +59,8 @@ describe "User pages" do
       end
       it { should have_selector('title', text: full_title(I18n.t('user.titles.show'))) }
       it { should have_selector('h1', text: user.name) }
-      it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
-      it { should_not have_selector('li.cmgr-active a', href: users_path) }
+      it { should have_selector('li.cmgr-active', text: tab_header) }
+      it { should_not have_selector('li.cmgr-active a[href="' + users_path + '"]') }
     end
   end
   
@@ -72,8 +72,8 @@ describe "User pages" do
       visit signup_path
     end
 
-    it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
-    it { should_not have_selector('li.cmgr-active a', href: users_path) }
+    it { should have_selector('li.cmgr-active', text: tab_header) }
+    it { should_not have_selector('li.cmgr-active a[href="' + users_path + '"]') }
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -105,7 +105,7 @@ describe "User pages" do
     describe "page for user" do
       it { should have_selector('h1', text: I18n.t('user.headers.edit')) }
       it { should have_selector('title', text: full_title(I18n.t('user.titles.edit'))) }
-      it { should_not have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
+      it { should_not have_selector('li.cmgr-active', text: tab_header) }
       it { should_not have_selector('select') }
     end
 
@@ -142,8 +142,8 @@ describe "User pages" do
           visit edit_user_path(user)
         end
         
-        it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
-        it { should_not have_selector('li.cmgr-active a', href: users_path) }
+        it { should have_selector('li.cmgr-active', text: tab_header) }
+        it { should_not have_selector('li.cmgr-active a[href="' + users_path + '"]') }
           
         specify "should be able to change user type" do
           fill_in I18n.t("helpers.label.user.password"),                with: user.password
@@ -177,8 +177,8 @@ describe "User pages" do
     
       it { should have_selector('title', text: full_title(I18n.t('user.titles.list'))) }
       it { should have_selector('h1', text: I18n.t('user.headers.list')) }
-      it { should have_selector('li.cmgr-tab.cmgr-active', text: tab_header) }
-      it { should_not have_selector('li.cmgr-active a', href: users_path) }
+      it { should have_selector('li.cmgr-active', text: tab_header) }
+      it { should_not have_selector('li.cmgr-active a[href="' + users_path + '"]') }
 
       describe "pagination" do  
         before(:all) { 30.times { FactoryGirl.create(:user) } }

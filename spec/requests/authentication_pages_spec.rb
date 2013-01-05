@@ -32,7 +32,7 @@ describe "Authentication" do
       let(:user) { FactoryGirl.create(:user) }
       before { sign_in user }
       
-      it { should have_selector('title', text: full_title(I18n.t('user.titles.show'))) }
+      it { should have_selector('title', text: full_title(I18n.t('costume.titles.list'))) }
       
       describe "followed by signout" do
         before { visit signout_path }

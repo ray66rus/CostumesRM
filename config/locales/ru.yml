@@ -124,3 +124,5 @@ ru:
   costume:
     constants:
       tab_header: "Костюмы"  
+    titles:
+     list: "Костюмы" 
