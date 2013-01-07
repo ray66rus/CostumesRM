@@ -201,8 +201,10 @@ describe "User pages" do
 
       let(:delete_button) { I18n.t('user.buttons.delete') }
       let(:create_button) { I18n.t('user.buttons.create') }
+      let(:edit_button) { I18n.t('user.buttons.edit') }
       it { should have_link(delete_button, href: user_path(User.first)) }
       it { should have_link(create_button, href: signup_path) }
+      it { should have_link(edit_button, href: edit_user_path(User.first)) }
       it "should be able to delete another user" do
         expect { click_link(delete_button) }.to change(User, :count).by(-1);
       end

@@ -1,6 +1,10 @@
 <li>
   <%= link_to user.name, user %>
   <%= User::TYPE_TO_TYPE_NAME[user.user_type] %>
+  <% if can? :update, user %>
+    |
+    <%= link_to t('user.buttons.edit'), edit_user_path(user) %>
+  <% end %>
   <% if can? :destroy, user %>
     |
     <%= link_to t('user.buttons.delete'), user, method: :delete,

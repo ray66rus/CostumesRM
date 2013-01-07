@@ -112,6 +112,7 @@ ru:
     buttons:
       delete: "Удалить"
       create: "Добавить пользователя"
+      edit: "Редактрировать"
     dialog_messages:
       delete_confirmation: "Вы уверены?"
   session:
