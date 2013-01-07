@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
   
   def create
-    user_type = params[:user].delete :user_type
+    user_type = params[:user].nil? ? '' : params[:user].delete(:user_type)
     @user = User.new(params[:user])
     @user.user_type = user_type if current_user.admin?
     if @user.save
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    user_type = params[:user].delete :user_type
+    user_type = params[:user].nil? ? '' : params[:user].delete(:user_type)
     @user = User.find(params[:id])
     @user.attributes = params[:user]
     @user.user_type = user_type if current_user.admin?
