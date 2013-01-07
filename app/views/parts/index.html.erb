@@ -1,6 +1,9 @@
 <% provide(:title, 'Части костюмов') %>
 <h1>Список частей костюмов</h1>
 <div class='parts-container'>
+  
+  <%= will_paginate %>
+  
   <div class='table-row header'>
     <div class='table-cell operations'><h3>Операции</h3></div>
     <div class='table-cell name'><h3>Название</h3></div>
@@ -34,4 +37,6 @@
   <div class='clear-both'></div>
   
   <%= link_to 'Добавить часть костюма', add_part_path %>
+  
+  <%= will_paginate %>
 </div>

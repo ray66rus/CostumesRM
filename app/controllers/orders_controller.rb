@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
   end
   
   def index
+    @orders = @orders.paginate(page: params[:page])
   end
   
   def delete

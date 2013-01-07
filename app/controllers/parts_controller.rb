@@ -33,6 +33,7 @@ class PartsController < ApplicationController
   end
   
   def index
+    @parts = @parts.paginate(page: params[:page])
   end
   
   def delete

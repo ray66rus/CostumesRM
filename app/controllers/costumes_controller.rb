@@ -39,7 +39,7 @@ class CostumesController < ApplicationController
   end
   
   def index
-    @costumes = Costume.all
+    @costumes = @costumes.paginate(page: params[:page])
   end
   
   def delete

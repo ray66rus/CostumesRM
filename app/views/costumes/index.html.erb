@@ -1,6 +1,9 @@
 <% provide(:title, 'Костюмы') %>
 <h1>Список костюмов</h1>
 <div class='costumes-container'>
+  
+  <%= will_paginate %>
+  
   <div class='table-row header'>
     <div class='table-cell operations'><h3>Операции</h3></div>
     <div class='table-cell name'><h3>Название</h3></div>
@@ -44,4 +47,6 @@
   <div class='clear-both'></div>
   
   <%= link_to 'Добавить костюм', add_costume_path %>
+  
+  <%= will_paginate %>
 </div>
