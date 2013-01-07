@@ -1,5 +1,5 @@
 <li>
-  <%= link_to user.name, user %>
+  <%= link_to user.name, user, id: "user_#{user.id}"%>
   <%= User::TYPE_TO_TYPE_NAME[user.user_type] %>
   <% if can? :update, user %>
     |
