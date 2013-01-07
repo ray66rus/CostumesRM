@@ -7,13 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<% flash.each do |key, value| %>
-  <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-<% end %>
-
+<%= render 'layouts/header' %>
 <% if use_tabbed_view? %>
-  <%= render :partial => 'shared/tabbed_view' %>
+  <%= render :partial => 'layouts/tabbed_view' %>
 <% else %>
   <%= yield %>
 <% end %>
