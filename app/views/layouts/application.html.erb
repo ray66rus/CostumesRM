@@ -11,9 +11,9 @@
 <% if use_tabbed_view? %>
   <%= render :partial => 'layouts/tabbed_view' %>
 <% else %>
-  <%= yield %>
+  <div class="cmgr-scroller"><%= yield %></div>
 <% end %>
-<%= debug(params) if Rails.env.development? %>
+<!-- <%= debug(params) if Rails.env.development? %> -->
 
 </body>
 </html>
