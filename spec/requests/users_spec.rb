@@ -132,26 +132,24 @@ describe "User pages" do
       specify { user.reload.email.should == new_email }
     end
 
-    describe "changing user type" do
+    describe "changing user type as admin" do
+      let(:admin) { FactoryGirl.create(:admin) }
       let(:user) { FactoryGirl.create(:poweruser) }
-
-      describe "as admin" do
-        let(:admin) { FactoryGirl.create(:admin) }
-        before do
-          sign_in admin
-          visit edit_user_path(user)
-        end
+      before do
+        sign_in admin
+        visit edit_user_path(user)
+      end
         
-        it { should have_selector('li.cmgr-active', text: tab_header) }
-        it { should_not have_selector('li.cmgr-active a[href="' + users_path + '"]') }
+      it { should have_selector('li.cmgr-active', text: tab_header) }
+      it { should_not have_selector('li.cmgr-active a[href="' + users_path + '"]') }
           
-        specify "should be able to change user type" do
-          fill_in I18n.t("helpers.label.user.password"),                with: user.password
-          fill_in I18n.t("helpers.label.user.password_confirmation"),   with: user.password
-          select I18n.t("user.constants.user_types.user"), :from => I18n.t("helpers.label.user.user_type")
-          click_button I18n.t("helpers.submit.user.update")    
-          user.reload.user_type.should == 'user'
-        end
+      specify "should be able to change user type and get full users list" do
+        fill_in I18n.t("helpers.label.user.password"),                with: user.password
+        fill_in I18n.t("helpers.label.user.password_confirmation"),   with: user.password
+        select I18n.t("user.constants.user_types.user"), :from => I18n.t("helpers.label.user.user_type")
+        click_button I18n.t("helpers.submit.user.update")
+        should have_selector('title', text: full_title(I18n.t('user.titles.list')))
+        user.reload.user_type.should == 'user'
       end
     end
   end
@@ -194,21 +192,21 @@ describe "User pages" do
       end
     end
 
-    describe "delete link" do
-      describe "as an admin user" do
-        let(:admin) { FactoryGirl.create(:admin) }
-        before do
-          sign_in admin
-          visit users_path
-        end
-
-        let(:delete_button) { I18n.t('user.buttons.delete') }
-        it { should have_link(delete_button, href: user_path(User.first)) }
-        it "should be able to delete another user" do
-          expect { click_link(delete_button) }.to change(User, :count).by(-1);
-        end
-        it { should_not have_link(delete_button, href: user_path(:admin)) }
+    describe "as admin user" do
+      let(:admin) { FactoryGirl.create(:admin) }
+      before do
+        sign_in admin
+        visit users_path
       end
+
+      let(:delete_button) { I18n.t('user.buttons.delete') }
+      let(:create_button) { I18n.t('user.buttons.create') }
+      it { should have_link(delete_button, href: user_path(User.first)) }
+      it { should have_link(create_button, href: signup_path) }
+      it "should be able to delete another user" do
+        expect { click_link(delete_button) }.to change(User, :count).by(-1);
+      end
+      it { should_not have_link(delete_button, href: user_path(:admin)) }
     end
 
     describe "as a non-admin user" do

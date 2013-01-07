@@ -111,6 +111,7 @@ ru:
       user_deleted: "Пользователь удален"
     buttons:
       delete: "Удалить"
+      create: "Добавить пользователя"
     dialog_messages:
       delete_confirmation: "Вы уверены?"
   session:
