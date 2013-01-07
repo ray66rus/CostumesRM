@@ -1,2 +1,3 @@
 <% provide(:title, t('user.titles.show')) %>
-<h1><%= @user.name %></h1>
+<h2><%= @user.name %> (<%= @user.email %>)</h2>
+<h3><%= User::TYPE_TO_TYPE_NAME[@user.user_type] %></h3>

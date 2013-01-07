@@ -45,6 +45,7 @@ ru:
         user_type: "Тип пользователя"
   header:
     default_page: "Главная"
+    view_user: "Информация о пользователе"
     change_user: "Изменить профиль"
     sign_out: "Выйти из системы"
     sign_in: "Войти в систему"

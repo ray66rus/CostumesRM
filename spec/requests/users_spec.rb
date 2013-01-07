@@ -40,7 +40,8 @@ describe "User pages" do
         visit user_path(user)
       end
       it { should have_selector('title', text: full_title(I18n.t('user.titles.show'))) }
-      it { should have_selector('h1', text: user.name) }
+      it { should have_selector('h2', text: "#{user.name} (#{user.email})") }
+      it { should have_selector('h3', text: User::TYPE_TO_TYPE_NAME[user.user_type]) }
       it { should_not have_selector('li.cmgr-active', text: tab_header) }
     end
 
@@ -58,7 +59,7 @@ describe "User pages" do
         visit user_path(user)
       end
       it { should have_selector('title', text: full_title(I18n.t('user.titles.show'))) }
-      it { should have_selector('h1', text: user.name) }
+      it { should have_selector('h2', text: user.name) }
       it { should have_selector('li.cmgr-active', text: tab_header) }
       it { should_not have_selector('li.cmgr-active a[href="' + users_path + '"]') }
     end
@@ -126,7 +127,7 @@ describe "User pages" do
       end
 
       it { should have_selector('title', text: full_title(I18n.t('user.titles.show'))) }
-      it { should have_selector('h1', text: new_name) }
+      it { should have_selector('h2', text: new_name) }
       it { should have_selector('div.alert.alert-success') }
       specify { user.reload.name.should == new_name }
       specify { user.reload.email.should == new_email }
