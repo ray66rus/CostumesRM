@@ -1,6 +1,9 @@
 <% provide(:title, t("order.titles.list")) %>
 <h1><%= t("order.headers.list") %></h1>
 <div class='orders-container'>
+
+  <%= will_paginate %>
+
   <div class='table-row header'>
     <div class='table-cell operations'><h3><%= t("order.labels.operations") %></h3></div>
     <div class='table-cell client'><h3><%= t("order.labels.client") %></h3></div>
@@ -57,6 +60,8 @@
   <% end %>
   
   <div class='clear-both'></div>
-  
+
   <%= link_to t("order.buttons.add_new"), add_order_path %>
+  
+  <%= will_paginate %>
 </div>

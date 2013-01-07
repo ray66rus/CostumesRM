@@ -1,6 +1,9 @@
 <% provide(:title, 'Клиенты') %>
 <h1>Список клиентов</h1>
 <div class='clients-container'>
+  
+  <%= will_paginate %>
+  
   <div class='table-row header'>
     <div class='table-cell operations'><h3>Операции</h3></div>
     <div class='table-cell name'><h3>Название клиента</h3></div>
@@ -37,6 +40,8 @@
   <% end %>
   
   <div class='clear-both'></div>
-  
+    
   <%= link_to 'Добавить клиента', add_client_path %>
+  
+  <%= will_paginate %>
 </div>

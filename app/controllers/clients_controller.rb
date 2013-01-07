@@ -5,6 +5,7 @@ class ClientsController < ApplicationController
   end
   
   def index
+    @clients = @clients.paginate(page: params[:page])
   end
   
   def create
