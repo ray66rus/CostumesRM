@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery.ui.datepicker-ru
+//= require bootstrap
 //= require_tree .
 
 (function(window, undefined) {

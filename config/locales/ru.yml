@@ -43,6 +43,11 @@ ru:
         password_confirmation: "Подтверждение пароля"
         password: "Пароль"
         user_type: "Тип пользователя"
+  header:
+    default_page: "Главная"
+    change_user: "Изменить профиль"
+    sign_out: "Выйти из системы"
+    sign_in: "Войти в систему"
   error_messages:
     errors_in_form: "Форма содержит"
     one_error: "ошибку"
