@@ -10,27 +10,27 @@
         position: relative;
         
         &.operations {
-            width: 210px;
+            width: 200px;
         }
         &.client {
             width: 150px;
         }
         &.costumes {
-            width: 150px;
+            width: 130px;
         }
         &.price {
-            width: 52px;
+            width: 70px;
         }
         &.take-date {
-            width: 110px;
+            width: 120px;
         }
         &.return-date {
             width: 190px;
         }
-        &.picture {
+        &.comment {
             width: 100%;
-            padding-left: 880px;
-            margin-left: -880px;
+            padding-left: 860px;
+            margin-left: -860px;
             position: static;
         }
     }
